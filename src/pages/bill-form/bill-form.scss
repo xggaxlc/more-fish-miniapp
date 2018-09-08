@@ -42,26 +42,9 @@
     flex-wrap: wrap;
     margin-right: -40rpx;
 
-    .item {
-      display: flex;
-      align-items: center;
-      border-radius: 50%;
+    circle-text {
       margin-right: 38rpx;
       margin-bottom: 40rpx;
-      border-width: 1px;
-      border-style: solid;
-
-      .name {
-        padding: 17rpx;
-        width: 100rpx;
-        height: 100rpx;
-        flex-shrink: 0;
-        line-height: 1.3;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
     }
   }
 }

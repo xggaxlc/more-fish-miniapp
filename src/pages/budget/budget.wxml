@@ -12,15 +12,26 @@
 
 <view class="page-budget">
   <view class="box-list">
+
+    <!-- <block wx:for="{{ budgetListStore.data }}" wx:key="{{ index }}">
+      <circle-text
+        data-id="{{ item.data._id }}"
+        bindlongpress="handleLongPress"
+        text="{{ item.data.name }}"
+        color="{{ item.data.color }}"
+      />
+    </block> -->
+
     <view class="item"
       wx:for="{{ budgetListStore.data }}"
       wx:key="{{ index }}"
       data-id="{{ item.data._id }}"
       bindlongpress="handleLongPress"
     >
-      <view class="name" style="border: 1px solid {{ item.data.color }}; color: {{ item.data.color }};">
-        <view class="text-overflow-2">{{ item.data.name }}</view>
-      </view>
+      <circle-text
+        text="{{ item.data.name }}"
+        color="{{ item.data.color }}"
+      />
       <view class="content">
         <view class="remark">{{ item.data.remark }}</view>
         <view class="amount">预算<text class="strong">{{ item.data.amount }}</text></view>
