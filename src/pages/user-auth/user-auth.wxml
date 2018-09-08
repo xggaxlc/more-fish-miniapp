@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="box-logo">
+    <image src="/images/logo.png" class="logo" />
+    <text>多鱼账本</text>
+  </view>
+  <view class="box-content">
+    <view class="title">请同意授权</view>
+    <view class="intro">以便为你提供更好的服务</view>
+    <button class="btn-primary" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">确认授权</button>
+  </view>
+</view>

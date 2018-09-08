@@ -1,0 +1,10 @@
+.component-button-fixed-bottom {
+  .box-footer {
+    box-sizing: content-box;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+  }
+}

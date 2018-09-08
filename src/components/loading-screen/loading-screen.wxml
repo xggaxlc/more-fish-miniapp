@@ -1,0 +1,16 @@
+<block wx:if="{{ coverView }}">
+  <cover-view class="component-loading-screen" bindtap="handleRetry" wx:if="{{ show }}" hover-class="none" catchtouchmove="preventTouchmove">
+    <block wx:if="{{ showError }}">
+      <cover-image class="error-image" src="/images/img-disconnect.png" />
+      <cover-view class="error-tip">点击屏幕重新加载</cover-view>
+    </block>
+  </cover-view>
+</block>
+<block wx:else>
+  <view class="component-loading-screen" bindtap="handleRetry" wx:if="{{ show }}" hover-class="none" catchtouchmove="preventTouchmove">
+    <block wx:if="{{ showError }}">
+      <image class="error-image" src="/images/img-disconnect.png" />
+      <view class="error-tip">点击屏幕重新加载</view>
+    </block>
+  </view>
+</block>

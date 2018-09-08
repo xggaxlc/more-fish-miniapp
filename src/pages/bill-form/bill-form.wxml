@@ -1,0 +1,15 @@
+<loading-screen />
+
+<form class="page-add-bill" bindsubmit="handleSubmit">
+  <view class="box-date"></view>
+  <view class="input-group">
+    <text>食品支出</text>
+    <input type="number" value="{{ billStore.data.amount }}" name="amount" placeholder="0.00"  />
+  </view>
+  <view class="box-budget"></view>
+  <view class="input-group">
+    <image src="/images/icon-flag.png" class="icon-flag" />
+    <input type="text" value="{{ billStore.data.remark }}" name="remark" placeholder="备注"  />
+  </view>
+  <button class="btn-primary" form-type="submit">保存</button>
+</form>

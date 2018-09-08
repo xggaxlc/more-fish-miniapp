@@ -1,0 +1,11 @@
+@import '../../styles/icon';
+
+.box-icon-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .icon-close {
+    flex-shrink: 0;
+  }
+}

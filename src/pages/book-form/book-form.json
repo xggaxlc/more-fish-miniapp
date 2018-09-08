@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "loading-screen": "/components/loading-screen/loading-screen",
+    "avatar": "/components/avatar/avatar",
+    "button-fixed-bottom": "/components/button-fixed-bottom/button-fixed-bottom"
+  }
+}

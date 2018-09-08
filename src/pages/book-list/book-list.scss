@@ -1,0 +1,109 @@
+@import '../../styles/share';
+
+.page-book {
+  position: relative;
+  padding: 40rpx 30rpx 0;
+  background: $primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .bg-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.box-tip,
+.box-book {
+  position: relative;
+  z-index: 1;
+}
+
+.box-tip {
+  color: #fff;
+  flex-shrink: 0;
+
+  view {
+    display: flex;
+    align-items: center;
+    line-height: 40rpx;
+
+    &:before {
+      content: '';
+      width: 20rpx;
+      height: 20rpx;
+      background: #fff;
+      border-radius: 50%;
+      margin-right: 10rpx;
+    }
+
+    &:last-child:before {
+      visibility: hidden;
+    }
+  }
+}
+
+.box-book {
+  flex: 1;
+  background: #fff;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  margin-top: 20rpx;
+  padding: 70rpx 70rpx 0;
+
+  .item {
+    position: relative;
+    width: 200rpx;
+    height: 250rpx;
+    padding: 0 10rpx;
+    margin-bottom: 70rpx;
+    border-radius: 10rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &.add {
+      background: #C3D7F0;
+    }
+
+    .name {
+      position: relative;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .icon-star {
+      position: absolute;
+      top: 0;
+      right: 18rpx;
+      width: 32rpx;
+      height: 38rpx;
+      z-index: 2;
+    }
+
+    .icon-add {
+      width: 55rpx;
+      height: 54rpx;
+    }
+
+    &:nth-of-type(2n) {
+      float: right;
+    }
+
+    &:nth-of-type(2n + 1) {
+      float: left;
+      margin-right: 150rpx;
+    }
+  }
+}

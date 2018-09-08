@@ -1,0 +1,30 @@
+<loading-screen />
+
+<view class="page-book">
+  <image src="../../images/bg-page.jpg" class="bg-page" />
+  <view class="box-tip">
+    <view>选择账本，记录和查看该账本的数据</view>
+    <view>长按账本，修改账本设置或删除账本</view>
+  </view>
+  <view class="box-book clearfix">
+    <view
+      class="item"
+      wx:for="{{ bookListStore.data }}"
+      wx:key="_id"
+      data-id="{{ item.data._id }}"
+      data-creator="{{ item.data.create_user }}"
+      bindtap="handleStart"
+      bindlongpress="handleOpenActionsheet"
+    >
+      <block wx:if="{{ userStore.data.currentBook._id == item.data._id }}">
+        <image src="../../images/bg-book-active.png" class="bg" />
+        <image src="../../images/icon-star.png" class="icon-star" />
+      </block>
+      <image wx:else src="../../images/bg-book.png" class="bg" />
+      <text class="text-overflow-1 name">{{ item.data.name }}</text>
+    </view>
+    <view class="item add" bindtap="navToAddBook">
+      <image src="../../images/icon-add.png" class="icon-add" />
+    </view>
+  </view>
+</view>
