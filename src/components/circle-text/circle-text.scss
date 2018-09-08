@@ -1,5 +1,5 @@
 .component-circle-text {
-  padding: 18rpx;
+  padding: 14rpx;
   width: 100rpx;
   height: 100rpx;
   flex-shrink: 0;
@@ -10,4 +10,9 @@
   align-items: center;
   border-radius: 50%;
   border: 1px solid;
+  font-size: 28rpx;
+
+  .text {
+    text-align: center;
+  }
 }

@@ -23,6 +23,8 @@
           color="{{ item.data.color }}"
           active="{{ budgetIndex === index }}"
           text="{{ item.data.name }}"
+          data-index="{{ index }}"
+          bindtap="handleSelectBudget"
         />
       </block>
     </view>

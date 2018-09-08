@@ -2,5 +2,5 @@
   class="component-circle-text"
   style="color: {{ active ? '#fff' : color }}; border-color: {{ color }}; background: {{ active ? color : '#fff' }};"
 >
-  <view class="text-overflow-2">{{ text }}{{ text }}</view>
+  <view class="text-overflow-2 text">{{ text }}</view>
 </view>
