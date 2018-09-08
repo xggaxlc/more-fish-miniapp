@@ -1,1 +1,85 @@
 @import '../../styles/share';
+
+.page-add-bill {
+  padding-bottom: 200rpx;
+}
+
+.box-date {
+  padding: 70rpx 20rpx;
+  display: flex;
+  align-items: center;
+  color: #666666;
+  font-size: 28rpx;
+
+  image {
+    margin-right: 20rpx;
+  }
+}
+
+.box-budget {
+
+  .box-input {
+    height: 120rpx;
+    color: #fff;
+    padding: 0 20rpx;
+    font-size: 36rpx;
+    display: flex;
+    align-items: center;
+
+    .name {
+      flex-shrink: 0;
+    }
+
+    input {
+      flex: 1;
+      text-align: right;
+    }
+  }
+
+  .list {
+    padding: 60rpx 40rpx;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -40rpx;
+
+    .item {
+      display: flex;
+      align-items: center;
+      border-radius: 50%;
+      margin-right: 38rpx;
+      margin-bottom: 40rpx;
+      border-width: 1px;
+      border-style: solid;
+
+      .name {
+        padding: 17rpx;
+        width: 100rpx;
+        height: 100rpx;
+        flex-shrink: 0;
+        line-height: 1.3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid $primary;
+  height: 100rpx;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+  margin: 0 20rpx;
+
+  image {
+    margin-right: 20rpx;
+  }
+
+  input {
+    flex: 1;
+  }
+}

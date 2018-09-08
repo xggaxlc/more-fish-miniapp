@@ -1,5 +1,5 @@
 import { Collection } from '@store/helper';
-import { WebAPIStore, asyncAction, fetchAction } from './helper';
+import { asyncAction, fetchAction } from './helper';
 import { fetch } from '@utils';
 import { observable, computed } from 'mobx';
 import sumBy from 'lodash-es/sumBy';
@@ -22,7 +22,7 @@ function fromNow(time: string) {
     return '前天';
   }
 
-  return dayjs(time).format('YYYY-MM-DD');
+  return dayjs(time).format('D日');
 }
 
 // instanceKey => currentBook._id
@@ -62,7 +62,7 @@ export class BillListStore extends Collection {
 
   @asyncAction
   async* create(body) {
-    const { data } = yield fetch(`/books/${this.instanceKey}/bills`, { method: 'POST', data: body });
+    const { data } = yield fetch(`/books/${this.instanceKey}/bills`, { method: 'POST', data: { ...body, time: dayjs(body.time).toDate() } });
     this.fetchData();
     this.fetchTotalAmount();
     return data;

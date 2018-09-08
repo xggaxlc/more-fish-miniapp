@@ -3,6 +3,7 @@ import { WebAPIStore, fetchAction, asyncAction } from './helper';
 import { fetch } from '@utils';
 import { BillListStore } from './bill-list-store';
 import { userStore } from './user-store';
+import * as dayjs from 'dayjs';
 
 export class BillStore extends WebAPIStore {
   @observable data = {};
@@ -13,8 +14,8 @@ export class BillStore extends WebAPIStore {
   }
 
   @asyncAction
-  async* update(body = {}) {
-    const { data } = yield fetch(`/books/${userStore.currentBookId}/bills/${this.instanceKey}`, { method: 'PUT', data: body });
+  async* update(body: any = {}) {
+    const { data } = yield fetch(`/books/${userStore.currentBookId}/bills/${this.instanceKey}`, { method: 'PUT', data: { ...body, time: dayjs(body.time).toDate() } });
     this.data = data;
   }
 
