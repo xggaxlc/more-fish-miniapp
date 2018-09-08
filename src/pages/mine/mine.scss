@@ -1,0 +1,81 @@
+@import '../../styles/share';
+
+.box-header {
+  position: relative;
+  width: 100%;
+  height: 526rpx;
+
+  .cover {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+  }
+
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .avatar {
+      width: 160rpx;
+      height: 160rpx;
+      border-radius: 50%;
+      margin-bottom: 40rpx;
+    }
+
+    .name {
+      color: #fff;
+      font-size: 36rpx;
+    }
+  }
+}
+
+.box-content {
+  padding: 0 20rpx;
+  .box-menu {
+    margin-top: 80rpx;
+    margin-bottom: 80rpx;
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 18rpx 0;
+      border-bottom: 1px solid $primary;
+
+      .box-left {
+        flex: 1;
+        display: flex;
+
+        .info {
+          margin-left: 20rpx;
+          color: #666666;
+
+          .name {
+            font-size: 32rpx;
+            margin-bottom: 6rpx;
+          }
+
+          .role {
+            font-size: 20rpx;
+
+            &.admin {
+              color: $primary;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .box-btn {
+    .btn {
+      margin-top: 40rpx;
+    }
+  }
+}

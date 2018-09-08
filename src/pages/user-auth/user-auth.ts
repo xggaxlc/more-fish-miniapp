@@ -1,6 +1,5 @@
 import { observer, userStore } from '@store';
 import { autoLoading } from '@utils';
-import './user-auth.scss';
 
 const homeUrl = '/pages/book-list/book-list';
 

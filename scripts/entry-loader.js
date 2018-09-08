@@ -4,6 +4,7 @@ const { extname, relative, dirname, basename } = require('path');
 const { getEntryKeyByResourceFile } = require('./utils');
 
 module.exports = function(source) {
+
   const { entryMap, entry } = getOptions(this);
   const resourcePath = this.resourcePath;
   const entryKey = getEntryKeyByResourceFile(resourcePath);

@@ -1,6 +1,5 @@
 import { observer, userStore, checkCurrentBook, BudgetListStore, BudgetStore, uiStore } from '@store';
 import { autoLoading, showToast, showConfirmModal } from '@utils';
-import './budget.scss';
 
 observer({
   get props() {

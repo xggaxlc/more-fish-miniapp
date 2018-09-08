@@ -12,6 +12,10 @@ text {
   font-size: inherit;
 }
 
+.hidden {
+  display: none;
+}
+
 @mixin text-overflow($row: 1) {
   overflow: hidden;
   word-wrap: break-word;

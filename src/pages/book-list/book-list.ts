@@ -1,8 +1,5 @@
-import { toJS } from 'mobx';
 import { showToast, showConfirmModal, showTipModal, autoLoading, pullDownRefresh } from '@utils';
 import { observer, bookListStore, BookStore, userStore } from '@store';
-import './book-list.scss';
-
 observer({
 
   props: {

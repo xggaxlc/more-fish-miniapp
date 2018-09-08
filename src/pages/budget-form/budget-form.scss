@@ -1,0 +1,47 @@
+@import '../../styles/share';
+
+.page-budget-form {
+  padding: 0 60rpx 200rpx;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #EFECEC;
+  height: 100rpx;
+  margin-top: 80rpx;
+  border: 1px solid #979797;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+
+  input {
+    flex: 1;
+  }
+
+  image {
+    flex-shrink: 0;
+    margin-right: 20rpx;
+  }
+
+  .color-plant {
+    flex-shrink: 0;
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 4rpx;
+  }
+}
+
+.box-tips {
+  margin-top: 80rpx;
+  font-size: 24rpx;
+  color: #999999;
+
+  view {
+    font-size: inherit;
+  }
+
+  .title {
+    font-weight: bold;
+  }
+}

@@ -9,7 +9,8 @@
     "pages/book-list/book-list",
     "pages/book-form/book-form",
     "pages/join-book/join-book",
-    "pages/user-auth/user-auth"
+    "pages/user-auth/user-auth",
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundColor": "#44A8FA",
@@ -43,10 +44,10 @@
         "text": "预算"
       },
       {
-        "pagePath": "pages/stat/stat",
-        "selectedIconPath": "images/tab-icon-stat-active.png",
-        "iconPath": "images/tab-icon-stat.png",
-        "text": "统计"
+        "pagePath": "pages/mine/mine",
+        "selectedIconPath": "images/tab-icon-mine-active.png",
+        "iconPath": "images/tab-icon-mine.png",
+        "text": "我的"
       }
     ]
   }

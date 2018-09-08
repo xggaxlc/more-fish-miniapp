@@ -16,7 +16,6 @@ require('core-js/modules/es7.promise.finally');
 require('core-js/modules/es7.symbol.async-iterator');
 
 import './utils/wx-shim';
-import './app.scss';
 
 App({
   onLaunch() {

@@ -1,6 +1,5 @@
 import { uiStore } from '@store';
 import { get } from 'lodash';
-import './button-fixed-bottom.scss';
 
 Component({
   properties: {
