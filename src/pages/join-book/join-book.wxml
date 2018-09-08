@@ -1,0 +1,41 @@
+<loading-screen />
+<view class="page-join-book">
+  <image src="../../images/bg-page.jpg" class="bg-page" />
+  <button-fixed-bottom>
+    <view class="box-content" slot="content">
+      <view class="info">{{ bookStore.data.create_user.nickName }}邀请您加入共享账本</view>
+      <view class="box-item">
+        <view class="item">
+          <image src="/images/icon-book.png" class="icon-book" />
+          {{ bookStore.data.name }}
+        </view>
+        <view class="item">
+          <image src="/images/icon-flag.png" class="icon-flag" />
+          {{ bookStore.data.remark }}
+        </view>
+        <view class="item">
+          <image src="/images/icon-date.png" class="icon-date" />
+          {{ bookStore.createAtFormated }}
+        </view>
+      </view>
+
+      <view class="box-users">
+        <view class="title">成员：</view>
+        <view class="box-avatar">
+          <view class="row" wx:for="{{ bookStore.chunkedUsers }}" wx:key="{{ index }}" wx:for-item="users">
+            <avatar
+              class="item"
+              wx:for="{{ users }}"
+              wx:key="{{ _id }}"
+              url="{{ item.avatarUrl }}"
+            />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="box-footer" slot="footer">
+      <button class="btn-primary" wx:if="{{ userStore.userInfoFull }}" bindtap="handleJoin">加入</button>
+      <button class="btn-primary" wx:else open-type="getUserInfo" bindgetuserinfo="handleGetUserInfo">加入</button>
+    </view>
+  </button-fixed-bottom>
+</view>

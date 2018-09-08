@@ -1,0 +1,14 @@
+.box-avatar {
+  position: relative;
+}
+
+icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(10%, -25%);
+}
+
+.avatar {
+  border-radius: 50%;
+}

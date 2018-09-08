@@ -1,0 +1,41 @@
+{
+  "name": "create-weapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production node ./scripts/build",
+    "start": "node ./scripts/run"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.1",
+    "@types/qs": "^6.5.1",
+    "@types/request": "^2.47.1",
+    "copy-webpack-plugin": "^4.5.2",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "extract-loader": "^2.0.1",
+    "file-loader": "^1.1.11",
+    "ip": "^1.1.5",
+    "jsonfile": "^4.0.0",
+    "loader-utils": "^1.1.0",
+    "lodash": "^4.17.10",
+    "node-sass": "^4.9.3",
+    "sass": "^1.13.0",
+    "sass-loader": "^7.1.0",
+    "shelljs": "^0.8.2",
+    "style-loader": "^0.22.1",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.5",
+    "webpack-sources": "^1.1.0"
+  },
+  "dependencies": {
+    "core-decorators": "^0.20.0",
+    "core-js": "^2.5.7",
+    "dayjs": "^1.7.5",
+    "lodash-es": "^4.17.10",
+    "mobx": "4.2",
+    "qs": "^6.5.2"
+  }
+}

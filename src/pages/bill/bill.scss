@@ -1,0 +1,157 @@
+@import '../../styles/icon';
+@import '../../styles/color';
+
+.page-bill {
+  padding: 0 20rpx;
+}
+
+.item-bill,
+.box-timeline {
+  padding-left: 90rpx;
+}
+
+.item-bill {
+  margin: 60rpx 0;
+
+  .box-top {
+    display: flex;
+    justify-content: space-between;
+    color: #666666;
+    margin-bottom: 15rpx;
+  }
+
+  .box-bottom {
+    display: flex;
+    font-size: 24rpx;
+    color: #999999;
+
+    .remark {
+      flex: 1;
+      margin-right: 70rpx
+    }
+
+    .userInfo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+
+      image {
+        margin-right: 6rpx;
+      }
+    }
+  }
+}
+
+.box-timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+
+  .time {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $primary;
+  }
+
+  .line {
+    position: relative;
+    flex: 1;
+    height: 3rpx;
+    background: $primary;
+    margin-right: 36rpx;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      content: '';
+      width: 16rpx;
+      height: 16rpx;
+      border-radius: 50%;
+      background: $primary;
+    }
+  }
+
+  .total {
+    color: $yellow;
+  }
+}
+
+.box-header {
+  position: relative;
+  height: 540rpx;
+
+  .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .box-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .box-date {
+    font-size: 28rpx;
+    color: #666666;
+    margin-top: 68rpx;
+    text-align: center;
+  }
+
+  .box-head {
+    display: flex;
+    align-items: stretch;
+    margin: 90rpx 0 80rpx;
+    height: 120rpx;
+
+    .item {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &:first-child {
+        &:after {
+          position: absolute;
+          content: '';
+          right: 0;
+          top: 0;
+          width: 2rpx;
+          height: 100%;
+          background: $primary;
+        }
+      }
+
+      .name {
+        color: $primary;
+        margin-bottom: 10rpx;
+      }
+
+      .total {
+        color: $yellow;
+        font-size: 48rpx;
+      }
+    }
+  }
+
+  .btn-record {
+    margin-bottom: 40rpx;
+    image {
+      margin-right: 10rpx;
+    }
+  }
+}
+
+.box-list {
+  margin-top: 60rpx;
+}

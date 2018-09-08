@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/bill/bill",
+    "pages/budget/budget",
+    "pages/stat/stat",
+    "pages/bill-form/bill-form",
+    "pages/bill-detail/bill-detail",
+    "pages/budget-form/budget-form",
+    "pages/book-list/book-list",
+    "pages/book-form/book-form",
+    "pages/join-book/join-book",
+    "pages/user-auth/user-auth"
+  ],
+  "window": {
+    "backgroundColor": "#44A8FA",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#44A8FA",
+    "navigationBarTitleText": "多鱼账本",
+    "navigationBarTextStyle": "light"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#44A8FA",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/bill/bill",
+        "selectedIconPath": "images/tab-icon-bill-active.png",
+        "iconPath": "images/tab-icon-bill.png",
+        "text": "账单"
+      },
+      {
+        "pagePath": "pages/budget/budget",
+        "selectedIconPath": "images/tab-icon-budget-active.png",
+        "iconPath": "images/tab-icon-budget.png",
+        "text": "预算"
+      },
+      {
+        "pagePath": "pages/stat/stat",
+        "selectedIconPath": "images/tab-icon-stat-active.png",
+        "iconPath": "images/tab-icon-stat.png",
+        "text": "统计"
+      }
+    ]
+  }
+}

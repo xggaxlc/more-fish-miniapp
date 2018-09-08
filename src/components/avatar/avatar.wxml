@@ -1,0 +1,4 @@
+<view class="box-avatar" style="width: {{ size }}rpx;">
+  <icon-close wx:if="{{ showClose }}" bindclose="handleClose" />
+  <image class="avatar" src="{{ url }}" style="width: {{ size }}rpx; height: {{ size }}rpx;" bindtap="handlePreview" />
+</view>

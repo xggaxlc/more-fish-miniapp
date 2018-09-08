@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "多鱼账本",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loading-screen": "/components/loading-screen/loading-screen"
+  }
+}

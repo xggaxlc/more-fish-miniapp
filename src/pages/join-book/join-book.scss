@@ -1,0 +1,75 @@
+@import '../../styles/share';
+
+.page-join-book {
+  position: relative;
+  padding: 40rpx 30rpx 0;
+  background: $primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .bg-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+button-fixed-bottom {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  background: #fff;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+.box-content {
+  padding: 0 30rpx;
+
+  .info {
+    color: #666666;
+    font-size: 36rpx;
+    margin: 60rpx 0;
+  }
+
+  .box-item {
+    .item {
+      display: flex;
+      align-items: center;
+      font-size: 28rpx;
+      margin-bottom: 100rpx;
+
+      image {
+        margin-right: 20rpx;
+      }
+    }
+  }
+}
+
+.box-users {
+  .title {
+    font-size: 28rpx;
+    color: #666666;
+  }
+
+  .box-avatar {
+    .row {
+      display: flex;
+      align-items: center;
+      margin-right: -50rpx;
+    }
+
+    .item {
+      margin-right: 50rpx;
+      margin-top: 50rpx;
+    }
+  }
+}
+
+.box-footer {
+  padding: 0 60rpx 50rpx;
+  background: transparent;
+}

@@ -1,0 +1,11 @@
+<view
+  class="box-icon-close"
+  style="width: {{ iconSize * 2 }}rpx; height: {{ iconSize * 2 }}rpx;"
+  bindtap="handleClose"
+>
+  <image
+    class="icon-close"
+    src="{{ icon }}"
+    style="width: {{ iconSize }}rpx; height: {{ iconSize }}rpx"
+  />
+</view>

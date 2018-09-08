@@ -1,0 +1,11 @@
+<view class="component-button-fixed-bottom">
+  <view class="box-content" style="padding-bottom: {{ height }}px;">
+    <view class="content-wrapper" wx:if="{{ useContentHeight }}" style="height: {{ contentHeight }}px">
+      <slot name="content" />
+    </view>
+    <slot wx:else name="content" />
+  </view>
+  <view id="footer" class="box-footer" style="background-color: {{ bgColor }}; padding-bottom: {{ iphoneXPadding  }}rpx" wx:if="{{ showFooter }}">
+    <slot name="footer" />
+  </view>
+</view>

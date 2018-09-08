@@ -1,0 +1,17 @@
+<loading-screen />
+
+<view class="page-bill-detail">
+  <view class="box-content">
+    <view class="title">{{ billStore.data.budget.name }}</view>
+    <view class="item">金额：{{ billStore.data.amount }}</view>
+    <view class="item">备注：{{ billStore.data.remark }}</view>
+    <view class="item">账单时间：{{ billStore.data.time }}</view>
+    <view class="item">记账时间：{{ billStore.data.update_at }}</view>
+    <view class="item">记账成员：{{ billStore.data.create_user.nickName }}</view>
+  </view>
+
+  <view class="box-btn">
+    <navigator class="btn-primary" open-type="redirect" url="/pages/bill-form/bill-form?id={{billStore.data._id }}" hover-class="none">编辑</navigator>
+    <view class="btn-primary red" bindtap="handleDelte">删除</view>
+  </view>
+</view>

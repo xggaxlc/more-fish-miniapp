@@ -1,0 +1,65 @@
+<loading-screen />
+
+<template name="bill">
+  <navigator
+    class="item-bill"
+    url="/pages/bill-detail/bill-detail?id={{ item._id }}"
+    hover-class="none"
+  >
+    <view class="box-top">
+      <view class="budget">{{ item.budget.name || '其他' }}</view>
+      <view class="amount">￥{{ item.amount }}</view>
+    </view>
+    <view class="box-bottom">
+      <view class="remark text-overflow-1">{{ item.remark }}</view>
+      <view class="userInfo">
+        <image class="avatar icon-user" src="/images/icon-user.png" />
+        <view class="nickname">{{ item.create_user.nickName }}</view>
+      </view>
+    </view>
+  </navigator>
+</template>
+
+<template name="timeline">
+  <view class="box-timeline">
+    <view class="time">{{ fromNow }}</view>
+    <view class="line"></view>
+    <view class="total">￥{{ amount }}</view>
+  </view>
+</template>
+
+<view class="page-bill">
+
+  <!-- <navigator url="/pages/book-list/book-list" class="btn-primary" open-type="redirect">切换账本</navigator> -->
+
+  <view class="box-header">
+    <image src="/images/bg-bill.png" class="bg" />
+    <view class="box-content">
+      <view class="box-date">{{ settingStore.currentYear }}-{{ settingStore.currentMonth }}</view>
+      <view class="box-head">
+        <view class="box-budget item">
+          <view class="name">{{ settingStore.currentMonth }}月预算</view>
+          <view class="total">{{ budgetListStore.total }}</view>
+        </view>
+        <view class="box-expense item">
+          <view class="name">{{ settingStore.currentMonth }}月支出</view>
+          <view class="total">{{ billListStore.totalAmount }}</view>
+        </view>
+      </view>
+      <navigator class="btn-primary border btn-record" url="/pages/bill-form/bill-form">
+        <image src="/images/icon-add-primary.png" class="icon-add-primary" />
+        记一笔
+      </navigator>
+    </view>
+  </view>
+
+  <view class="box-list">
+    <block wx:for="{{ billListStore.dataGroupByDate }}" wx:key="{{ index }}" wx:for-item="group">
+      <template is="timeline" data="{{ fromNow: group.fromNow, amount: group.amount }}" />
+      <block wx:for="{{ group.data }}">
+        <template is="bill" data="{{ item }}" />
+      </block>
+    </block>
+  </view>
+
+</view>
