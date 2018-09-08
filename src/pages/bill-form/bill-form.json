@@ -1,6 +1,7 @@
 {
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "loading-screen": "/components/loading-screen/loading-screen"
+    "loading-screen": "/components/loading-screen/loading-screen",
+    "circle-text": "/components/circle-text/circle-text"
   }
 }

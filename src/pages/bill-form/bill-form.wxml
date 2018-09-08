@@ -18,18 +18,13 @@
     </view>
 
     <view class="list">
-      <view
-        wx:for="{{ budgetListStore.data }}"
-        wx:key="{{ index }}"
-        style="color: {{ budgetIndex === index ? '#fff' : item.data.color }}; border-color: {{ item.data.color }}; background: {{ budgetIndex === index ? item.data.color : '#fff' }};"
-        class="item text-overflow-2"
-        data-index="{{ index }}"
-        bindtap="handleSelectBudget"
-      >
-        <view class="name">
-          <view class="text-overflow-2">{{ item.data.name }}</view>
-        </view>
-      </view>
+      <block wx:for="{{ budgetListStore.data }}" wx:key="{{ index }}">
+        <circle-text
+          color="{{ item.data.color }}"
+          active="{{ budgetIndex === index }}"
+          text="{{ item.data.name }}"
+        />
+      </block>
     </view>
   </view>
 

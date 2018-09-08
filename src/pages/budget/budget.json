@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "circle-text": "/components/circle-text/circle-text"
+  }
+}
