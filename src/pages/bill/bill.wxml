@@ -7,7 +7,7 @@
     hover-class="none"
   >
     <view class="box-top">
-      <view class="budget">{{ item.budget.name || '其他' }}</view>
+      <view class="budget" style="color: {{ item.budget.color || '#666666' }}">{{ item.budget.name || '其他' }}</view>
       <view class="amount">￥{{ item.amount }}</view>
     </view>
     <view class="box-bottom">

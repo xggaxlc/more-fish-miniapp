@@ -10,7 +10,12 @@ export class BillStore extends WebAPIStore {
 
   @fetchAction.merge
   async fetchData() {
-    return fetch(`/books/${userStore.currentBookId}/bills/${this.instanceKey}`);
+    const { data } = await fetch(`/books/${userStore.currentBookId}/bills/${this.instanceKey}`);
+    data.time_formated = dayjs(data.time).format('YYYY-MM-DD');
+    data.create_at_formated = dayjs(data.create_at).format('YYYY-MM-DD HH:mm');
+    data.update_at_formated = dayjs(data.update_at).format('YYYY-MM-DD HH:mm');
+    data.amount_formated = data.amount.toFixed(2);
+    return { data };
   }
 
   @asyncAction

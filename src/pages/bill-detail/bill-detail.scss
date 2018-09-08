@@ -1,0 +1,51 @@
+@import '../../styles/share.scss';
+
+.page-bill-detail {
+  padding: 0 60rpx;
+}
+
+.box-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 68rpx;
+  padding-bottom: 90rpx;
+
+  .amount {
+    margin-top: 24rpx;
+    color: #666666;
+    font-size: 48rpx;
+  }
+}
+
+.box-content {
+
+  .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60rpx;
+
+    .box-name {
+      flex-shrink: 0;
+      width: 200rpx;
+      display: flex;
+      align-items: center;
+
+      image {
+        margin-right: 20rpx;
+      }
+    }
+
+    .desc {
+      flex: 1;
+      text-align: right;
+    }
+  }
+}
+
+.box-btn {
+  .btn {
+    margin-top: 40rpx;
+  }
+}

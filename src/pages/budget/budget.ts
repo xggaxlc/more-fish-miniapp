@@ -1,4 +1,5 @@
-import { observer, userStore, checkCurrentBook, BudgetListStore, BudgetStore, uiStore } from '@store';
+import { settingStore } from './../../store/setting-store';
+import { observer, userStore, checkCurrentBook, BudgetListStore, BudgetStore } from '@store';
 import { autoLoading, showToast, showConfirmModal } from '@utils';
 
 observer({
@@ -6,7 +7,7 @@ observer({
     return checkCurrentBook()
       .then(() => {
         return {
-          uiStore,
+          settingStore,
           userStore,
           budgetListStore: BudgetListStore.findOrCreate(userStore.currentBookId)
         }

@@ -1,7 +1,7 @@
 <view class="box-header">
   <image src="/images/bg-budget.jpg" class="bg" />
   <view class="content">
-    <view class="box-time">{{ uiStore.currentMonthWithYear }}</view>
+    <view class="box-time">{{ settingStore.currentYear }}-{{ settingStore.currentMonth }}</view>
     <view class="box-title">
       <image src="/images/icon-money-primary.png" class="icon-money-primary" />
       <view>预算总额</view>
@@ -12,15 +12,6 @@
 
 <view class="page-budget">
   <view class="box-list">
-
-    <!-- <block wx:for="{{ budgetListStore.data }}" wx:key="{{ index }}">
-      <circle-text
-        data-id="{{ item.data._id }}"
-        bindlongpress="handleLongPress"
-        text="{{ item.data.name }}"
-        color="{{ item.data.color }}"
-      />
-    </block> -->
 
     <view class="item"
       wx:for="{{ budgetListStore.data }}"
