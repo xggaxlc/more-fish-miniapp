@@ -1,6 +1,5 @@
 import { observer, checkCurrentBook, BillStore, userStore } from '@store';
 import { showConfirmModal, autoLoading, goBack } from '@utils';
-import './bill-detail.scss';
 
 observer({
   get props() {

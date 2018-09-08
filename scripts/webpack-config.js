@@ -12,6 +12,23 @@ function getWebpackConfig(entry = []) {
 
   const entryMap = getEntryMap(entry);
 
+  const entryLoader = {
+    loader: path.resolve('scripts/entry-loader.js'),
+    options: {
+      entryMap,
+      entry
+    }
+  }
+
+  const importLoader = {
+    loader: path.resolve('scripts/import-loader.js'),
+    options: {
+      entryMap,
+      entry,
+      exts: ['wxml', 'scss', 'wxss', 'json']
+    }
+  }
+
   const config = {
     devtool: false,
     entry,
@@ -28,18 +45,26 @@ function getWebpackConfig(entry = []) {
         {
           test: /\.ts$/,
           use: [
-            {
-              loader: path.resolve('scripts/entry-loader.js'),
-              options: {
-                entryMap,
-                entry
-              }
-            },
-            'ts-loader'
+            { ...entryLoader },
+            'ts-loader',
+            { ...importLoader}
           ]
         },
         {
-          test: /\.scss$/,
+          test: /\.js$/,
+          use: [
+            { ...entryLoader },
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            },
+            { ...importLoader}
+          ]
+        },
+        {
+          test: /\.(scss)$/,
           use: [
             {
               loader: 'file-loader',
@@ -54,6 +79,21 @@ function getWebpackConfig(entry = []) {
             'extract-loader',
             'css-loader',
             'sass-loader'
+          ]
+        },
+        {
+          type: 'javascript/auto',
+          test: /\.(json|wxml|wxss)/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name(file) {
+                  const ext = path.extname(file);
+                  return file.replace(appRoot, '');
+                }
+              }
+            }
           ]
         }
       ]
@@ -80,11 +120,11 @@ function getWebpackConfig(entry = []) {
         bundleName
       }),
       new CopyWebpackPlugin([{
-        from: appRoot,
+        from: `${appRoot}/**/*.+(png|jpg|jpeg|gif|wxs)`,
         to: outputPath,
         cache: true,
-      }], { ignore: ['*.js', '*.ts', '*.scss', '*.less', '*.css', '*.md'], debug: false })
-
+        context: appRoot
+      }], { debug: false })
     ]
   }
 

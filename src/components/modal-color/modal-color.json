@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-modal": "/i-view/modal/index"
+  }
+}

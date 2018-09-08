@@ -1,6 +1,5 @@
 import { observer, bookListStore, BookStore, userStore } from '@store';
 import { autoLoading, showToast, showTipModal, showConfirmModal, goBack } from '@utils';
-import './book-form.scss';
 
 observer({
   get props() {

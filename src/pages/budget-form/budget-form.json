@@ -1,8 +1,8 @@
 {
-  "navigationBarTitleText": "添加预算",
+  "navigationBarTitleText": "预算",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "loading-screen": "/components/loading-screen/loading-screen",
-    "button-fixed-bottom": "/components/button-fixed-bottom/button-fixed-bottom"
+    "modal-color": "/components/modal-color/modal-color"
   }
 }

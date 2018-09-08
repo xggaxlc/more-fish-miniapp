@@ -1,7 +1,5 @@
-import { toJS } from 'mobx';
 import { settingStore } from './../../store/setting-store';
 import { observer, userStore, checkCurrentBook, BillListStore, uiStore, BudgetListStore } from '@store';
-import './bill.scss';
 
 observer({
   get props() {

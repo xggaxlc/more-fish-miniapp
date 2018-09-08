@@ -1,6 +1,5 @@
 import { observer, BookStore, userStore } from '@store';
 import { autoLoading, showTipModal } from '@utils';
-import './join-book.scss';
 
 observer({
   get props() {

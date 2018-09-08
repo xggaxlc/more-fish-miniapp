@@ -56,7 +56,7 @@
   <view class="box-list">
     <block wx:for="{{ billListStore.dataGroupByDate }}" wx:key="{{ index }}" wx:for-item="group">
       <template is="timeline" data="{{ fromNow: group.fromNow, amount: group.amount }}" />
-      <block wx:for="{{ group.data }}">
+      <block wx:for="{{ group.data }}" wx:key="_id">
         <template is="bill" data="{{ item }}" />
       </block>
     </block>

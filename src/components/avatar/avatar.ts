@@ -1,5 +1,3 @@
-import './avatar.scss';
-
 Component({
   properties: {
     url: {

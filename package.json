@@ -8,9 +8,12 @@
     "start": "node ./scripts/run"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "@types/lodash-es": "^4.17.1",
     "@types/qs": "^6.5.1",
     "@types/request": "^2.47.1",
+    "babel-loader": "^8.0.2",
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",

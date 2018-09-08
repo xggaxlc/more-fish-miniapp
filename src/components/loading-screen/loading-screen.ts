@@ -1,5 +1,4 @@
 import { get } from 'lodash';
-import './loading-screen.scss';
 
 Component({
   properties: {

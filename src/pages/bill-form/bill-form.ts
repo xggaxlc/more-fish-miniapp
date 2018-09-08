@@ -1,6 +1,5 @@
 import { observer, checkCurrentBook, BillListStore, userStore, BillStore, BudgetListStore } from '@store';
 import { autoLoading, goBack, showToast } from '@utils';
-import './bill-form.scss';
 
 observer({
   get props() {

@@ -1,5 +1,3 @@
-import './icon-close.scss';
-
 Component({
   properties: {
     icon: {

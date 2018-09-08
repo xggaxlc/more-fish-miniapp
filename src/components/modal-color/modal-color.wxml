@@ -1,0 +1,16 @@
+<i-modal
+  visible="{{ show }}"
+  show-ok="{{ false }}"
+  show-cancel
+  i-class-body="i-modal-body"
+  i-class-main="i-modal-main"
+  bind:cancel="handleCancel"
+>
+  <view class="title">设置费用分类显示的颜色</view>
+
+  <view class="box-color">
+    <block wx:for="{{ color }}" wx:key="{{ index }}">
+      <view class="item" style="background: {{ item }}" data-color="{{ item }}" bindtap="handleSelect" />
+    </block>
+  </view>
+</i-modal>
