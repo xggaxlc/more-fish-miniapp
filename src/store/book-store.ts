@@ -3,7 +3,7 @@ import { WebAPIStore, fetchAction, asyncAction } from '@store/helper';
 import { bookListStore } from '@store/book-list-store';
 import { userStore } from '@store/user-store';
 import { computed, observable } from 'mobx';
-import { chunk } from 'lodash';
+import chunk from 'lodash-es/chunk';
 import * as dayjs from 'dayjs';
 
 export class BookStore extends WebAPIStore {

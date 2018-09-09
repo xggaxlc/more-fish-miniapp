@@ -1,5 +1,5 @@
 import { uiStore } from '@store';
-import { get } from 'lodash';
+import get from 'lodash-es/get';
 
 Component({
   properties: {
