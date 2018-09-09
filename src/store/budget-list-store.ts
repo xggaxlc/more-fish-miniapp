@@ -1,7 +1,8 @@
 import { observable, computed, action } from 'mobx';
 import { WebAPIStore, fetchAction, asyncAction } from './helper';
 import { userStore } from './user-store';
-import { get, sumBy } from 'lodash';
+import get from 'lodash-es/get';
+import sumBy from 'lodash-es/sumBy';
 import { BudgetStore } from '@store/budget-store';
 import { fetch } from '@utils';
 
