@@ -60,6 +60,11 @@ export class BookStore extends WebAPIStore {
     this.data = data;
   }
 
+  // 退出账本
+  exitBook() {
+    return this.deleteBookMember(userStore.data._id);
+  }
+
   @asyncAction
   async* updateBook(body = {}) {
     const id = this.instanceKey;

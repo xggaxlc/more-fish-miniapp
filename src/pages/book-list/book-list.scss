@@ -1,8 +1,7 @@
 @import '../../styles/share';
-
 .page-book {
   position: relative;
-  padding: 40rpx 30rpx 0;
+  padding: 30rpx 30rpx 0;
   background: $primary;
   min-height: 100vh;
   display: flex;
@@ -23,36 +22,11 @@
   z-index: 1;
 }
 
-.box-tip {
-  color: #fff;
-  flex-shrink: 0;
-
-  view {
-    display: flex;
-    align-items: center;
-    line-height: 40rpx;
-
-    &:before {
-      content: '';
-      width: 20rpx;
-      height: 20rpx;
-      background: #fff;
-      border-radius: 50%;
-      margin-right: 10rpx;
-    }
-
-    &:last-child:before {
-      visibility: hidden;
-    }
-  }
-}
-
 .box-book {
   flex: 1;
   background: #fff;
   border-top-left-radius: 20rpx;
   border-top-right-radius: 20rpx;
-  margin-top: 20rpx;
   padding: 70rpx 70rpx 0;
 
   .item {

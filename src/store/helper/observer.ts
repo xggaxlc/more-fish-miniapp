@@ -1,3 +1,4 @@
+import { userStore } from './../user-store';
 import { autorun, isObservable, toJS } from 'mobx'
 import merge from 'lodash-es/merge';
 import forEach from 'lodash-es/forEach';
@@ -43,6 +44,7 @@ export function observer(options: any = {}, ...args) {
           const result = await this.props;
           this.props = result
         }
+        await userStore.tryFetchData();
         this.setAutoRun()
         return onLoad && onLoad.call(this, this.options)
       })()

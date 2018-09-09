@@ -10,7 +10,8 @@
     "pages/book-form/book-form",
     "pages/join-book/join-book",
     "pages/user-auth/user-auth",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/book-detail/book-detail"
   ],
   "window": {
     "backgroundColor": "#44A8FA",

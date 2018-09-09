@@ -2,10 +2,6 @@
 
 <view class="page-book">
   <image src="../../images/bg-page.jpg" class="bg-page" />
-  <view class="box-tip">
-    <view>选择账本，记录和查看该账本的数据</view>
-    <view>长按账本，修改账本设置或删除账本</view>
-  </view>
   <view class="box-book clearfix">
     <view
       class="item"

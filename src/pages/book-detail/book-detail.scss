@@ -1,0 +1,33 @@
+@import '../../styles/share.scss';
+
+.page-book-detail {
+  padding: 0 30rpx;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  margin-top: 80rpx;
+
+  image {
+    margin-right: 20rpx;
+  }
+}
+
+.box-users {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -48rpx;
+
+  avatar {
+    margin-right: 48rpx;
+    margin-top: 40rpx;
+  }
+}
+
+.box-btn {
+  .btn {
+    margin-top: 50rpx;
+  }
+}
+

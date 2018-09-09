@@ -11,7 +11,6 @@
         <image src="../../images/icon-flag.png" class="icon-flag" />
         <input name="remark" value="{{ form.remark }}" placeholder="输入备注" data-name="remark" bindinput="handleInputChange" />
       </view>
-
       <view class="box-users" wx:if="{{ bookStore.data.users }}">
         <view class="title">成员：</view>
         <view class="box-avatar">
@@ -31,6 +30,10 @@
             <image src="../../images/icon-add-gray.png" class="icon-add-gray" />
           </view>
         </view>
+      </view>
+      <view class="box-add-tip" wx:else>
+        <view class="p">添加账本成功后，可以通过编辑账本修改账本名称、备注、添加成员。</view>
+        <image src="/images/bg-add-book.png" mode="widthFix" />
       </view>
     </view>
     <view slot="footer" class="box-footer">
