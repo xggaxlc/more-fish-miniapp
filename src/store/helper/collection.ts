@@ -11,7 +11,7 @@ export class Collection extends WebAPIStore {
   @observable
   meta = {
     page: 1,
-    limit: 5,
+    limit: 20,
     count: 0
   }
 
