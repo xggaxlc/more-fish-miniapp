@@ -91,3 +91,12 @@ button:after {
     transform: translateX(-50%);
   }
 }
+
+.load-more {
+  border-color: #D8D8D8 !important;
+  margin: 100rpx auto !important;
+
+  view {
+    color: #999999;
+  }
+}

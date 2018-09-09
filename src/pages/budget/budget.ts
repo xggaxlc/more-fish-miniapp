@@ -1,6 +1,6 @@
 import { settingStore } from './../../store/setting-store';
 import { observer, userStore, checkCurrentBook, BudgetListStore, BudgetStore } from '@store';
-import { autoLoading, showToast, showConfirmModal } from '@utils';
+import { autoLoading, showToast, showConfirmModal, pullDownRefresh } from '@utils';
 
 observer({
   get props() {
@@ -15,7 +15,15 @@ observer({
   },
 
   onLoad() {
-    return this.props.budgetListStore.fetchData();
+    return this.fetchData();
+  },
+
+  fetchData() {
+    this.props.budgetListStore.fetchData();
+  },
+
+  onPullDownRefresh() {
+    return pullDownRefresh(this.fetchData());
   },
 
   async handleLongPress(e) {

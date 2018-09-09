@@ -1,5 +1,6 @@
 import { settingStore } from './../../store/setting-store';
 import { observer, userStore, checkCurrentBook, BillListStore, uiStore, BudgetListStore } from '@store';
+import { pullDownRefresh, autoLoading } from '@utils';
 
 observer({
   get props() {
@@ -17,10 +18,23 @@ observer({
 
   async onLoad() {
     wx.setNavigationBarTitle({ title: userStore.currentBookName });
-    await Promise.all([
+    await this.fetchData();
+  },
+
+  fetchData() {
+    return Promise.all([
       this.props.billListStore.fetchData(),
       this.props.billListStore.fetchTotalAmount(),
       this.props.budgetListStore.fetchData()
     ]);
-  }
+  },
+
+  onPullDownRefresh() {
+    return pullDownRefresh(this.fetchData());
+  },
+
+  onReachBottom() {
+    const { billListStore } = this.props;
+    return !billListStore.complete && billListStore.fetchMoreData();
+  },
 });

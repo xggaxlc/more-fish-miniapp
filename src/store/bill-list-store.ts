@@ -35,7 +35,7 @@ export class BillListStore extends Collection {
 
   @computed
   get dataGroupByDate() {
-    return this.amountOfMonth.map(amountItem => {
+    const data = this.amountOfMonth.map(amountItem => {
       const { _id: { year, month, date }, amount } = amountItem;
       const data = this.data.filter(item => {
         const timeObj = dayjs(item.time);
@@ -47,6 +47,7 @@ export class BillListStore extends Collection {
         data
       }
     });
+    return data.filter(item => item.data.length);
   }
 
   @computed
