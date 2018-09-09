@@ -20,13 +20,18 @@ function getWebpackConfig(entry = []) {
     }
   }
 
-  const importLoader = {
-    loader: path.resolve('scripts/import-loader.js'),
+  const entryFileLoader = {
+    loader: path.resolve('scripts/entry-file-loader.js'),
     options: {
       entryMap,
       entry,
       exts: ['wxml', 'scss', 'wxss', 'json']
     }
+  }
+
+  const getOutputPath = (file, replaceExt) => {
+    const filename = file.replace(appRoot, '');
+    return replaceExt ? filename.replace(path.extname(file), replaceExt) : filename;
   }
 
   const config = {
@@ -47,7 +52,7 @@ function getWebpackConfig(entry = []) {
           use: [
             { ...entryLoader },
             'ts-loader',
-            { ...importLoader}
+            { ...entryFileLoader }
           ]
         },
         {
@@ -60,7 +65,7 @@ function getWebpackConfig(entry = []) {
                 presets: ['@babel/preset-env']
               }
             },
-            { ...importLoader}
+            { ...entryFileLoader }
           ]
         },
         {
@@ -70,9 +75,7 @@ function getWebpackConfig(entry = []) {
               loader: 'file-loader',
               options: {
                 name(file) {
-                  const ext = path.extname(file);
-                  const filename = file.replace(appRoot, '').replace(ext, '');
-                  return `${filename}.wxss`;
+                  return getOutputPath(file, '.wxss');
                 }
               }
             },
@@ -83,14 +86,26 @@ function getWebpackConfig(entry = []) {
         },
         {
           type: 'javascript/auto',
-          test: /\.(json|wxml|wxss)/,
+          test: /\.json/,
           use: [
             {
               loader: 'file-loader',
               options: {
                 name(file) {
-                  const ext = path.extname(file);
-                  return file.replace(appRoot, '');
+                  return getOutputPath(file);
+                }
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(wxml|wxss)/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name(file) {
+                  return getOutputPath(file);
                 }
               }
             }
