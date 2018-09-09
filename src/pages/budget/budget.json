@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "circle-text": "/components/circle-text/circle-text"
+    "circle-text": "/components/circle-text/circle-text",
+    "loading-screen": "/components/loading-screen/loading-screen"
   }
 }

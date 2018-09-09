@@ -1,39 +1,39 @@
-<loading-screen />
+<loading-screen>
+  <form class="page-add-bill" bindsubmit="handleSubmit">
 
-<form class="page-add-bill" bindsubmit="handleSubmit">
+    <input class="hidden" name="time" value="{{ time }}" />
 
-  <input class="hidden" name="time" value="{{ time }}" />
-
-  <view class="box-date">
-    <image src="/images/icon-date-primary.png" class="icon-date-primary" />
-    <picker class="picker" mode="date" bindchange="handleTimeChange">{{ time }}</picker>
-  </view>
-
-  <input class="hidden" name="budget" value="{{ budgetListStore.data[budgetIndex].data._id }}" wx:if="{{ budgetListStore.data.length }}" />
-
-  <view class="box-budget">
-    <view class="box-input" style="background: {{ budgetListStore.data[budgetIndex].data.color || '#FF8308' }}">
-      <view class="name">{{ budgetListStore.data[budgetIndex].data.name || '其他支出' }}</view>
-      <input type="number" value="{{ billStore.data.amount }}" name="amount" placeholder="0.00" placeholder-style="color: #fff"  />
+    <view class="box-date">
+      <image src="/images/icon-date-primary.png" class="icon-date-primary" />
+      <picker class="picker" mode="date" bindchange="handleTimeChange">{{ time }}</picker>
     </view>
 
-    <view class="list">
-      <block wx:for="{{ budgetListStore.data }}" wx:key="{{ index }}">
-        <circle-text
-          color="{{ item.data.color }}"
-          active="{{ budgetIndex === index }}"
-          text="{{ item.data.name }}"
-          data-index="{{ index }}"
-          bindtap="handleSelectBudget"
-        />
-      </block>
+    <input class="hidden" name="budget" value="{{ budgetListStore.data[budgetIndex].data._id }}" wx:if="{{ budgetListStore.data.length }}" />
+
+    <view class="box-budget">
+      <view class="box-input" style="background: {{ budgetListStore.data[budgetIndex].data.color || '#FF8308' }}">
+        <view class="name">{{ budgetListStore.data[budgetIndex].data.name || '其他支出' }}</view>
+        <input type="number" value="{{ billStore.data.amount }}" name="amount" placeholder="0.00" placeholder-style="color: #fff"  />
+      </view>
+
+      <view class="list">
+        <block wx:for="{{ budgetListStore.data }}" wx:key="{{ index }}">
+          <circle-text
+            color="{{ item.data.color }}"
+            active="{{ budgetIndex === index }}"
+            text="{{ item.data.name }}"
+            data-index="{{ index }}"
+            bindtap="handleSelectBudget"
+          />
+        </block>
+      </view>
     </view>
-  </view>
 
-  <view class="input-group">
-    <image src="/images/icon-flag.png" class="icon-flag" />
-    <input type="text" value="{{ billStore.data.remark }}" name="remark" placeholder="备注"  />
-  </view>
+    <view class="input-group">
+      <image src="/images/icon-flag.png" class="icon-flag" />
+      <input type="text" value="{{ billStore.data.remark }}" name="remark" placeholder="备注"  />
+    </view>
 
-  <button class="btn-primary fixed" form-type="submit">保存</button>
-</form>
+    <button class="btn-primary fixed" form-type="submit">保存</button>
+  </form>
+</loading-screen>

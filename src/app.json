@@ -9,7 +9,6 @@
     "pages/book-list/book-list",
     "pages/book-form/book-form",
     "pages/join-book/join-book",
-    "pages/user-auth/user-auth",
     "pages/mine/mine",
     "pages/book-detail/book-detail"
   ],

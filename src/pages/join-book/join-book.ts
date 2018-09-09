@@ -2,6 +2,8 @@ import { observer, BookStore, userStore } from '@store';
 import { autoLoading, showTipModal } from '@utils';
 
 observer({
+  _needUpdateUserInfo: true,
+
   get props() {
     return {
       userStore,
@@ -11,10 +13,7 @@ observer({
 
   async onLoad() {
     const store = this.props.bookStore;
-    await Promise.all([
-      store.fetchJoinData(),
-      userStore.fetchData()
-    ]);
+    await store.fetchJoinData();
 
     if (store.userIsMember) {
       wx.hideLoading();
@@ -25,24 +24,12 @@ observer({
 
   async handleJoin() {
     await autoLoading(
-      Promise.all([
-        userStore.refreshUser(),
-        this.props.bookStore.joinBook()
-      ])
+      this.props.bookStore.joinBook()
     );
     this.navToHome();
   },
 
   navToHome() {
     wx.redirectTo({ url: '/pages/book-list/book-list' });
-  },
-
-  async handleGetUserInfo(e) {
-    const { userInfo, errMsg } = e.detail;
-    if (errMsg.indexOf('fail') !== -1) {
-      return;
-    }
-    await autoLoading(userStore.updateUser(userInfo));
-    this.handleJoin();
   }
 })

@@ -1,0 +1,2 @@
+<button class="button-class" bindtap="handleTriggerSubmit" wx:if="{{ userInfoUpdated }}">{{ title }}</button>
+<button class="button-class" bindgetuserinfo="handleGetUserInfo" open-type="getUserInfo" wx:else>{{ title }}</button>

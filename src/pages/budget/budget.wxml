@@ -1,37 +1,39 @@
-<view class="box-header">
-  <image src="/images/bg-budget.jpg" class="bg" />
-  <view class="content">
-    <view class="box-time">{{ settingStore.currentYear }}-{{ settingStore.currentMonth }}</view>
-    <view class="box-title">
-      <image src="/images/icon-money-primary.png" class="icon-money-primary" />
-      <view>预算总额</view>
+<loading-screen>
+  <view class="box-header">
+    <image src="/images/bg-budget.jpg" class="bg" />
+    <view class="content">
+      <view class="box-time">{{ settingStore.currentYear }}-{{ settingStore.currentMonth }}</view>
+      <view class="box-title">
+        <image src="/images/icon-money-primary.png" class="icon-money-primary" />
+        <view>预算总额</view>
+      </view>
+      <view class="total">{{ budgetListStore.total }}</view>
     </view>
-    <view class="total">{{ budgetListStore.total }}</view>
   </view>
-</view>
 
-<view class="page-budget">
-  <view class="box-list">
+  <view class="page-budget">
+    <view class="box-list">
 
-    <view class="item"
-      wx:for="{{ budgetListStore.data }}"
-      wx:key="{{ index }}"
-      data-id="{{ item.data._id }}"
-      bindlongpress="handleLongPress"
-    >
-      <circle-text
-        text="{{ item.data.name }}"
-        color="{{ item.data.color }}"
-      />
-      <view class="content">
-        <view class="remark">{{ item.data.remark }}</view>
-        <view class="amount">预算<text class="strong">{{ item.data.amount }}</text></view>
+      <view class="item"
+        wx:for="{{ budgetListStore.data }}"
+        wx:key="{{ index }}"
+        data-id="{{ item.data._id }}"
+        bindlongpress="handleLongPress"
+      >
+        <circle-text
+          text="{{ item.data.name }}"
+          color="{{ item.data.color }}"
+        />
+        <view class="content">
+          <view class="remark">{{ item.data.remark }}</view>
+          <view class="amount">预算<text class="strong">{{ item.data.amount }}</text></view>
+        </view>
       </view>
     </view>
   </view>
-</view>
-<navigator class="btn-add" url="/pages/budget-form/budget-form" hover-class="none" wx:if="{{ userStore.isCurrentBookCreator }}">
-  <image src="/images/btn-budget.png" />
-</navigator>
+  <navigator class="btn-add" url="/pages/budget-form/budget-form" hover-class="none" wx:if="{{ userStore.isCurrentBookCreator }}">
+    <image src="/images/btn-budget.png" />
+  </navigator>
+</loading-screen>
 
 

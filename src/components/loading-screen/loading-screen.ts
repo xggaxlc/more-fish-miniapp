@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import get from 'lodash-es/get';
 
 Component({
   properties: {
@@ -9,8 +9,9 @@ Component({
   },
 
   data: {
-    show: true,
-    showError: false,
+    loading: true,
+    showRetry: false,
+    showAuth: false
   },
 
   ready() {
@@ -33,14 +34,24 @@ Component({
     },
 
     async handleLoad(promise) {
+      this.setData({ loading: true });
       wx.showLoading({ title: '加载中...', mask: true });
       try {
         await promise;
-        this.setData({ showError: false, show: false });
+        this.setData({ showRetry: false, showAuth: false, loading: false });
       } catch (e) {
-        // ignore错误不显示“点击屏幕重新加载”
-        if (!get(e, 'message', '').startsWith('ignore')) {
-          this.setData({ showError: true, show: true });
+        const errorType = get(e, 'type', '');
+        const errorMsg = get(e, 'message', '');
+
+        if (errorType === 'userinfo') {
+          this.setData({ showRetry: false, showAuth: true, loading: false });
+        } else {
+          const setData = { showRetry: true, showAuth: false, loading: false }
+          if (errorType === 'ignore' || errorMsg.startsWith('ignore')) {
+            // ignore错误不显示“点击屏幕重新加载”
+            setData.loading = true;
+          }
+          this.setData(setData);
         }
         throw e;
       } finally {
