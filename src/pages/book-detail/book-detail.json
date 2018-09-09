@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "账本详情",
   "usingComponents": {
-    "loading-screen": "/components/loading-screen/loading-screen"
+    "loading-screen": "/components/loading-screen/loading-screen",
+    "avatar": "/components/avatar/avatar"
   }
 }
