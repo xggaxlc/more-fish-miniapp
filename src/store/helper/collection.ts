@@ -52,6 +52,7 @@ export class Collection extends WebAPIStore {
     const index = this.findIndexById(id);
     if (index !== -1) {
       this.data.splice(index, 1) as any;
+      this.meta.count --;
     }
   }
 

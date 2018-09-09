@@ -11,7 +11,9 @@ Component({
   data: {
     loading: true,
     showRetry: false,
-    showAuth: false
+    showAuth: false,
+    showError: false,
+    errorInfo: ''
   },
 
   ready() {
@@ -38,15 +40,20 @@ Component({
       wx.showLoading({ title: '加载中...', mask: true });
       try {
         await promise;
-        this.setData({ showRetry: false, showAuth: false, loading: false });
+        this.setData({ errorInfo: '', showRetry: false, showError: false, showAuth: false, loading: false });
       } catch (e) {
         const errorType = get(e, 'type', '');
         const errorMsg = get(e, 'message', '');
+        const errorStatus = get(e, 'status');
 
-        if (errorType === 'userinfo') {
-          this.setData({ showRetry: false, showAuth: true, loading: false });
+        if (errorStatus === 403) {
+          this.setData({ errorInfo: '没有权限', showError: true, showRetry: false, showAuth: false, loading: false });
+        } else if (errorStatus === 404) {
+          this.setData({ errorInfo: '资源不存在', showError: true, showRetry: false, showAuth: false, loading: false });
+        } else if (errorType === 'userinfo') {
+          this.setData({ errorInfo: '', showError: false, showRetry: false, showAuth: true, loading: false });
         } else {
-          const setData = { showRetry: true, showAuth: false, loading: false }
+          const setData = { errorInfo: '', showError: false, showRetry: true, showAuth: false, loading: false }
           if (errorType === 'ignore' || errorMsg.startsWith('ignore')) {
             // ignore错误不显示“点击屏幕重新加载”
             setData.loading = true;

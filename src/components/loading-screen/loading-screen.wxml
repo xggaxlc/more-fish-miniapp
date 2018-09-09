@@ -13,5 +13,12 @@
       </view>
     </view>
   </view>
-  <slot wx:if="{{ !showRetry && !showAuth }}" />
+  <view class="page-error" wx:if="{{ showError}}" catchtouchmove="preventTouchmove">
+    <view class="content">
+      <image class="icon-logo" src="/images/logo.png" />
+      <view class="p">{{ errorInfo }}</view>
+      <navigator hover-class="none" class="btn-primary" url="/pages/book-list/book-list" open-type="reLaunch">返回首页</navigator>
+    </view>
+  </view>
+  <slot wx:if="{{ !showRetry && !showAuth && !showError }}" />
 </block>
