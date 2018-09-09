@@ -28,6 +28,7 @@ export class BillStore extends WebAPIStore {
     const id = this.instanceKey;
     await fetch(`/books/${userStore.currentBookId}/bills/${this.instanceKey}`, { method: 'DELETE' });
     const billListStore = BillListStore.findOrCreate(userStore.currentBookId);
+    billListStore.fetchTotalAmount();
     billListStore.deleteItemById(id);
   }
 }
