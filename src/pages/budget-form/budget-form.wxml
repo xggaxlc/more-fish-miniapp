@@ -1,30 +1,28 @@
-<loading-screen />
-
 <modal-color show="{{ showModal }}" bind:cancel="handleToggleModal" bind:ok="handleSelectColor" />
 
-<form class="page-budget-form" bindsubmit="handleSubmit">
-
-  <input class="hidden" value="{{ color }}" name="color" />
-
-  <view>
-    <view class="input-group">
-      <image src="/images/icon-category.png" class="ionc-category" />
-      <input type="text" placeholder="预算名称" name="name" value="{{ budgetStore.data.name }}" />
-      <view class="color-plant" style="background: {{ color }}" bindtap="handleToggleModal" />
+<loading-screen>
+  <form class="page-budget-form" bindsubmit="handleSubmit">
+    <input class="hidden" value="{{ color }}" name="color" />
+    <view>
+      <view class="input-group">
+        <image src="/images/icon-category.png" class="ionc-category" />
+        <input type="text" placeholder="预算名称" name="name" value="{{ budgetStore.data.name }}" />
+        <view class="color-plant" style="background: {{ color }}" bindtap="handleToggleModal" />
+      </view>
+      <view class="input-group">
+        <image src="/images/icon-money.png" class="icon-money" />
+        <input type="number" placeholder="输入金额" name="amount" value="{{ budgetStore.data.amount }}" />
+      </view>
+      <view class="input-group">
+        <image src="/images/icon-flag.png" class="icon-flag" />
+        <input type="text" placeholder="输入备注" name="remark" value="{{ budgetStore.data.remark }}" />
+      </view>
+      <view class="box-tips">
+        <view class="title">填写说明：</view>
+        <view class="p">按需求分类设置本月预算，如食品每月预算为2000元，日用品每月预算为500元，交通每月预算为500元等；</view>
+        <view class="p">下月重新设置预算，若不设置，则沿用本月的预算；重新设置可以在原有预算的基础上修改或增删</view>
+      </view>
     </view>
-    <view class="input-group">
-      <image src="/images/icon-money.png" class="icon-money" />
-      <input type="number" placeholder="输入金额" name="amount" value="{{ budgetStore.data.amount }}" />
-    </view>
-    <view class="input-group">
-      <image src="/images/icon-flag.png" class="icon-flag" />
-      <input type="text" placeholder="输入备注" name="remark" value="{{ budgetStore.data.remark }}" />
-    </view>
-    <view class="box-tips">
-      <view class="title">填写说明：</view>
-      <view class="p">按需求分类设置本月预算，如食品每月预算为2000元，日用品每月预算为500元，交通每月预算为500元等；</view>
-      <view class="p">下月重新设置预算，若不设置，则沿用本月的预算；重新设置可以在原有预算的基础上修改或增删</view>
-    </view>
-  </view>
-  <button class="btn-primary fixed" form-type="submit">保存</button>
-</form>
+    <button class="btn-primary fixed" form-type="submit">保存</button>
+  </form>
+</loading-screen>

@@ -1,31 +1,31 @@
-<loading-screen />
-
-<view class="page-mine">
-  <view class="box-header">
-    <image class="cover" src="/images/bg-mine.png" />
-    <view class="content">
-      <image src="{{ userStore.data.avatarUrl }}" class="avatar" />
-      <view class="name">{{ userStore.data.nickName }}</view>
+<loading-screen>
+  <view class="page-mine">
+    <view class="box-header">
+      <image class="cover" src="/images/bg-mine.png" />
+      <view class="content">
+        <image src="{{ userStore.data.avatarUrl }}" class="avatar" />
+        <view class="name">{{ userStore.data.nickName }}</view>
+      </view>
     </view>
-  </view>
 
-  <view class="box-content">
-    <view class="box-menu">
-      <navigator class="item" hover-class="none" url="/pages/book-detail/book-detail?id={{ userStore.data.currentBook._id }}">
-        <view class="box-left">
-          <image src="/images/icon-image-book.png" style="background: {{ userStore.data.currentBook.color }}" class="icon-image-book" />
-          <view class="info">
-            <view class="name">{{ userStore.data.currentBook.name }}</view>
-            <view class="role {{ userStore.isCurrentBookCreator ?  'admin' : '' }}">{{ userStore.isCurrentBookCreator ? '管理员' : '成员' }}</view>
+    <view class="box-content">
+      <view class="box-menu">
+        <navigator class="item" hover-class="none" url="/pages/book-detail/book-detail?id={{ userStore.data.currentBook._id }}">
+          <view class="box-left">
+            <image src="/images/icon-image-book.png" style="background: {{ userStore.data.currentBook.color }}" class="icon-image-book" />
+            <view class="info">
+              <view class="name">{{ userStore.data.currentBook.name }}</view>
+              <view class="role {{ userStore.isCurrentBookCreator ?  'admin' : '' }}">{{ userStore.isCurrentBookCreator ? '管理员' : '成员' }}</view>
+            </view>
           </view>
-        </view>
-        <image src="/images/icon-arrow-right.png" class="icon icon-arrow-right" />
-      </navigator>
-    </view>
+          <image src="/images/icon-arrow-right.png" class="icon icon-arrow-right" />
+        </navigator>
+      </view>
 
-    <view class="box-btn">
-      <navigator hover-class="none" url="/pages/book-list/book-list" class="btn btn-primary" open-type="redirect">切换账本</navigator>
-      <navigator hover-class="none" url="/pages/book-form/book-form" class="btn btn-primary border">添加账本</navigator>
+      <view class="box-btn">
+        <navigator hover-class="none" url="/pages/book-list/book-list" class="btn btn-primary" open-type="redirect">切换账本</navigator>
+        <navigator hover-class="none" url="/pages/book-form/book-form" class="btn btn-primary border">添加账本</navigator>
+      </view>
     </view>
   </view>
-</view>
+</loading-screen>

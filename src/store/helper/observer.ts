@@ -5,7 +5,7 @@ import forEach from 'lodash-es/forEach';
 import activate from './activate'
 
 export function observer(options: any = {}, ...args) {
-  const { onLoad, onHide, onShow, onUnload } = options
+  const { onLoad, onHide, onShow, onUnload, _needUpdateUserInfo = false } = options
   const propsDescriptor = Object.getOwnPropertyDescriptor(options, 'props')
   Object.defineProperty(options, 'props', { value: null })
 
@@ -40,11 +40,15 @@ export function observer(options: any = {}, ...args) {
       return this.afterLoad = (async() => {
         Object.defineProperty(this, 'props', propsDescriptor)
         Object.defineProperty(this, 'props', { value: this.props, writable: true })
+        if (_needUpdateUserInfo) {
+          await userStore.tryUpdateUser();
+        } else {
+          await userStore.tryFetchData();
+        }
         if (this.props instanceof Promise) {
           const result = await this.props;
           this.props = result
         }
-        await userStore.tryFetchData();
         this.setAutoRun()
         return onLoad && onLoad.call(this, this.options)
       })()

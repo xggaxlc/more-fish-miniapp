@@ -1,44 +1,43 @@
-<loading-screen />
-
-<view class="page-book-form">
-  <button-fixed-bottom>
-    <view slot="content">
-      <view class="input-group">
-        <image src="../../images/icon-book.png" class="icon-book" />
-        <input name="name" value="{{ form.name }}" placeholder="输入账本名称" data-name="name" bindinput="handleInputChange" />
-      </view>
-      <view class="input-group">
-        <image src="../../images/icon-flag.png" class="icon-flag" />
-        <input name="remark" value="{{ form.remark }}" placeholder="输入备注" data-name="remark" bindinput="handleInputChange" />
-      </view>
-      <view class="box-users" wx:if="{{ bookStore.data.users }}">
-        <view class="title">成员：</view>
-        <view class="box-avatar">
-          <view class="row" wx:for="{{ bookStore.chunkedUsers }}" wx:key="{{ index }}" wx:for-item="users">
-            <avatar
-              class="item"
-              wx:for="{{ users }}"
-              wx:key="{{ _id }}"
-              url="{{ item.avatarUrl }}"
-              show-close="{{ !bookStore.userIsCreator }}"
-              data-id="{{ item._id }}"
-              bindclose="handleDelete"
-            />
-          </view>
-          <view class="box-add-user item">
-            <button open-type="share"></button>
-            <image src="../../images/icon-add-gray.png" class="icon-add-gray" />
+<loading-screen>
+  <view class="page-book-form">
+    <button-fixed-bottom>
+      <view slot="content">
+        <view class="input-group">
+          <image src="../../images/icon-book.png" class="icon-book" />
+          <input name="name" value="{{ form.name }}" placeholder="输入账本名称" data-name="name" bindinput="handleInputChange" />
+        </view>
+        <view class="input-group">
+          <image src="../../images/icon-flag.png" class="icon-flag" />
+          <input name="remark" value="{{ form.remark }}" placeholder="输入备注" data-name="remark" bindinput="handleInputChange" />
+        </view>
+        <view class="box-users" wx:if="{{ bookStore.data.users }}">
+          <view class="title">成员：</view>
+          <view class="box-avatar">
+            <view class="row" wx:for="{{ bookStore.chunkedUsers }}" wx:key="{{ index }}" wx:for-item="users">
+              <avatar
+                class="item"
+                wx:for="{{ users }}"
+                wx:key="{{ _id }}"
+                url="{{ item.avatarUrl }}"
+                show-close="{{ !bookStore.userIsCreator }}"
+                data-id="{{ item._id }}"
+                bindclose="handleDelete"
+              />
+            </view>
+            <view class="box-add-user item">
+              <button open-type="share"></button>
+              <image src="../../images/icon-add-gray.png" class="icon-add-gray" />
+            </view>
           </view>
         </view>
+        <view class="box-add-tip" wx:else>
+          <view class="p">添加账本成功后，可以通过编辑账本修改账本名称、备注、添加成员。</view>
+          <image src="/images/bg-add-book.png" mode="widthFix" />
+        </view>
       </view>
-      <view class="box-add-tip" wx:else>
-        <view class="p">添加账本成功后，可以通过编辑账本修改账本名称、备注、添加成员。</view>
-        <image src="/images/bg-add-book.png" mode="widthFix" />
+      <view slot="footer" class="box-footer">
+        <button class="btn-primary" bindtap="handleSubmit">保存</button>
       </view>
-    </view>
-    <view slot="footer" class="box-footer">
-      <button class="btn-primary" wx:if="{{ userStore.userInfoFull }}" bindtap="handleSubmit">保存</button>
-      <button class="btn-primary" wx:else open-type="getUserInfo" bindgetuserinfo="handleGetUserInfo">保存</button>
-    </view>
-  </button-fixed-bottom>
-</view>
+    </button-fixed-bottom>
+  </view>
+</loading-screen>

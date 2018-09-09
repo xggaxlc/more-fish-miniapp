@@ -2,6 +2,9 @@ import { observer, bookListStore, BookStore, userStore } from '@store';
 import { autoLoading, showToast, showTipModal, showConfirmModal, goBack } from '@utils';
 
 observer({
+
+  _needUpdateUserInfo: true,
+
   get props() {
     const id = this.options.id;
     const stores: any = { userStore }
@@ -18,12 +21,8 @@ observer({
   async onLoad() {
     wx.hideShareMenu();
     const bookStore = this.props.bookStore;
-    await Promise.all([
-      userStore.fetchData(),
-      bookStore && bookStore.fetchData()
-    ]);
-
     if (bookStore) {
+      await bookStore.fetchData();
       wx.showShareMenu({ withShareTicket: true });
       this.setData({
         form: {
@@ -45,7 +44,6 @@ observer({
       showTipModal('请填写账本名称');
       return;
     }
-    await autoLoading(userStore.refreshUser());
     const bookStore = this.props.bookStore;
     if (bookStore) {
       // 更新
@@ -66,15 +64,6 @@ observer({
     const bookStore = this.props.bookStore;
     await autoLoading(bookStore.deleteBookMember(userId));
     showToast('删除成功');
-  },
-
-  async handleGetUserInfo(e) {
-    const { userInfo, errMsg } = e.detail;
-    if (errMsg.indexOf('fail') !== -1) {
-      return;
-    }
-    await autoLoading(userStore.updateUser(userInfo));
-    this.handleSubmit();
   },
 
   onShareAppMessage() {

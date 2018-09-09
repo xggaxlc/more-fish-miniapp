@@ -1,35 +1,35 @@
-<loading-screen />
+<loading-screen>
+  <view class="page-book-detail">
+    <view class="group">
+      <image src="/images/icon-book.png" class="icon-book" />
+      {{ bookStore.data.name }}
+    </view>
+    <view class="group">
+      <image src="/images/icon-flag.png" class="icon-flag" />
+      {{ bookStore.data.remark }}
+    </view>
+    <view class="group">
+      <image src="/images/icon-date.png" class="icon-date" />
+      {{ bookStore.createAtFormated }}
+    </view>
+    <view class="group">
+      <image src="/images/icon-user-gray.png" class="icon-user-gray" />
+      成员：
+    </view>
 
-<view class="page-book-detail">
-  <view class="group">
-    <image src="/images/icon-book.png" class="icon-book" />
-    {{ bookStore.data.name }}
-  </view>
-  <view class="group">
-    <image src="/images/icon-flag.png" class="icon-flag" />
-    {{ bookStore.data.remark }}
-  </view>
-  <view class="group">
-    <image src="/images/icon-date.png" class="icon-date" />
-    {{ bookStore.createAtFormated }}
-  </view>
-  <view class="group">
-    <image src="/images/icon-user-gray.png" class="icon-user-gray" />
-    成员：
-  </view>
+    <view class="box-users">
+      <block wx:for="{{ bookStore.data.users }}" wx:key="_id">
+        <avatar url="{{ item.avatarUrl }}" size="{{ 100 }}" />
+      </block>
+    </view>
 
-  <view class="box-users">
-    <block wx:for="{{ bookStore.data.users }}" wx:key="_id">
-      <avatar url="{{ item.avatarUrl }}" size="{{ 100 }}" />
-    </block>
+    <view class="box-btn">
+      <block wx:if="{{ bookStore.userIsCreator }}">
+        <navigator url="/pages/book-form/book-form?id={{ bookStore.data._id }}" hover-class="none" class="btn btn-primary">编辑</navigator>
+        <!-- <view class="btn btn-primary">管理权限</view> -->
+        <view class="btn btn-primary red" bindtap="handleDelete">删除</view>
+      </block>
+      <view class="btn btn-primary" wx:else>退出</view>
+    </view>
   </view>
-
-  <view class="box-btn">
-    <block wx:if="{{ bookStore.userIsCreator }}">
-      <navigator url="/pages/book-form/book-form?id={{ bookStore.data._id }}" hover-class="none" class="btn btn-primary">编辑</navigator>
-      <!-- <view class="btn btn-primary">管理权限</view> -->
-      <view class="btn btn-primary red" bindtap="handleDelete">删除</view>
-    </block>
-    <view class="btn btn-primary" wx:else>退出</view>
-  </view>
-</view>
+</loading-screen>

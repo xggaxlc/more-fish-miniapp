@@ -1,11 +1,11 @@
 import { WebAPIStore, fetchAction, asyncAction } from './helper';
 import { fetch, goTo } from '@utils';
 import { computed, observable } from 'mobx';
-import { get } from 'lodash';
-import * as qs from 'qs';
+import get from 'lodash-es/get';
 
 class UserStore extends WebAPIStore {
 
+  @observable userInfoUpdated = false;
   @observable data: any = { currentBook: {} };
   @observable userUpdated = false;
 
@@ -22,39 +22,25 @@ class UserStore extends WebAPIStore {
 
   @asyncAction
   async* updateUser(body) {
+    // 整个小程序周期只更新一次用户信息
+    if (this.userUpdated) {
+      return;
+    }
     const { data } = yield fetch('/users/me', { method: 'PUT', data: body });
     this.data = data;
     this.userUpdated = true;
   }
 
-  async refreshUser() {
-    if (this.userUpdated) return;
+  async tryUpdateUser() {
     const { authSetting } = await wx.getSetting();
     if (get(authSetting, 'scope.userInfo')) {
       const { userInfo } = await wx.getUserInfo();
-      this.updateUser(userInfo);
+      return this.updateUser(userInfo);
     } else {
-      this.navToAuthPage();
-      throw new Error('ignore 需要重新授权');
+      const error: any = new Error('需要用户授权');
+      error.type = 'userinfo';
+      throw error;
     }
-  }
-
-  async navToAuthPage() {
-    const pages = getCurrentPages();
-    const currentPage = pages[pages.length - 1];
-    const query = qs.stringify(currentPage.options);
-
-    const currentUrl = `/${currentPage.route}?${query}`;
-    const authUrl = '/pages/user-auth/user-auth';
-
-    if (currentUrl.indexOf(authUrl) === -1) {
-      wx.redirectTo({ url: `${authUrl}?page=${encodeURIComponent(currentUrl)}` });
-    }
-  }
-
-  @computed
-  get userInfoFull() {
-    return !!this.data.nickName;
   }
 
   @computed
