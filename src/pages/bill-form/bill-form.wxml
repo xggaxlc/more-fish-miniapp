@@ -13,7 +13,7 @@
     <view class="box-budget">
       <view class="box-input" style="background: {{ budgetListStore.data[budgetIndex].data.color || '#FF8308' }}">
         <view class="name">{{ budgetListStore.data[budgetIndex].data.name || '其他支出' }}</view>
-        <input type="number" value="{{ billStore.data.amount }}" name="amount" placeholder="0.00" placeholder-style="color: #fff"  />
+        <input type="digit" value="{{ billStore.data.amount }}" name="amount" placeholder="0.00" placeholder-style="color: #fff"  />
       </view>
 
       <view class="list">
