@@ -22,11 +22,5 @@ observer({
       this.props.billListStore.fetchTotalAmount(),
       this.props.budgetListStore.fetchData()
     ]);
-  },
-
-  onShareAppMessage() {
-    return {
-      imageUrl: '/images/img-share.png'
-    }
-  },
+  }
 });

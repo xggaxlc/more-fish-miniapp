@@ -2,10 +2,11 @@ import { userStore } from './../user-store';
 import { autorun, isObservable, toJS } from 'mobx'
 import merge from 'lodash-es/merge';
 import forEach from 'lodash-es/forEach';
+import noop from 'lodash-es/noop';
 import activate from './activate'
 
 export function observer(options: any = {}, ...args) {
-  const { onLoad, onHide, onShow, onUnload, _needUpdateUserInfo = false } = options
+  const { onLoad, onHide, onShow, onUnload, onShareAppMessage = noop, _needUpdateUserInfo = false } = options
   const propsDescriptor = Object.getOwnPropertyDescriptor(options, 'props')
   Object.defineProperty(options, 'props', { value: null })
 
@@ -68,6 +69,23 @@ export function observer(options: any = {}, ...args) {
       this.clearAutoRun()
       onHide && onHide.call(this)
     },
+
+    onShareAppMessage() {
+      const shareObjDefault = {
+        title: '多鱼账本',
+        imageUrl: '/images/img-share.png',
+        path: 'pages/book-list/book-list'
+      }
+      const shareObj = {
+       ... shareObjDefault,
+       ...(onShareAppMessage.call(this) || {})
+      };
+      const imageUrl = shareObj.imageUrl;
+      if (imageUrl) {
+        shareObj.imageUrl = encodeURI(imageUrl);
+      }
+      return shareObj;
+    }
   }
 
   return Page(merge(options, ...args, observerOptions))
