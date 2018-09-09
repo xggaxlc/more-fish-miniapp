@@ -1,4 +1,5 @@
 import { settingStore } from './../store/setting-store';
+import { authStore } from '@store';
 import { apiOrigin } from './environment';
 import { urlConcat } from './url-concat';
 import get from 'lodash-es/get';
@@ -29,77 +30,73 @@ async function handleAuth(pathname, options) {
   return fn();
 }
 
-// export async function fetch(pathname, options: any = {}, handle401 = true) {
-//   const { method = 'GET', data = {} } = options;
-//   const token = get(require('@store'), 'authStore.token');
-//   const request: any = {
-//     baseUrl: apiOrigin,
-//     url: pathname,
-//     method,
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//       'Authorization': token
-//     }
-//   }
-
-//   const methodStr = method.toUpperCase();
-//   if (methodStr === 'GET' || methodStr === 'DELETE') {
-//     request.qs = data;
-//   } else {
-//     request.body = JSON.stringify(data);
-//   }
-
-//   const res = await wx.cloud.callFunction({
-//     name: 'request',
-//     data: {
-//       request
-//     }
-//   });
-//   const { result: { response: { statusCode }, body } } = res;
-//   if (statusCode >= 200 && statusCode < 300) {
-//     return body;
-//   } else {
-//     if (handle401 && statusCode === 401) {
-//       return handleAuth(pathname, options);
-//     }
-//     const err: any = new Error(body.message)
-//     err.status = statusCode;
-//     throw err;
-//   }
-// }
-
-export function fetch(pathname, options: any = {}, handle401 = true) {
-  const mergeUrl = urlConcat(apiOrigin, pathname)
-  const apiName = options.apiName || 'request'
-  const defaultOptions = {
-    method: 'GET',
-    header: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }
-
-  const opts = Object.assign({}, defaultOptions, options)
-
-  const token = get(require('@store'), 'authStore.token');
-  if (token) {
-    opts.header['Authorization'] = token;
-  }
-
-  return wx[apiName]({ url: mergeUrl, ...opts }).then(res => {
-    const { statusCode } = res
+function handleResponse(pathname: string, options = {}, handle401 = false) {
+  return (response) => {
+    const { statusCode } = response;
     if (statusCode >= 200 && statusCode < 300) {
-      const timestamp = +get(res, 'header.Timestamp', 0);
+      const timestamp = +get(response, 'header.timestamp') || +get(response, 'header.Timestamp') || 0;
       timestamp && settingStore.setTimestamp(timestamp);
-      return res.data;
+      return response.data;
     } else {
       if (handle401 && statusCode === 401) {
         return handleAuth(pathname, options);
       }
-      const err: any = new Error(res.data.message)
+      const err: any = new Error(response.data.message)
       err.status = statusCode
       throw err
     }
-  })
+  }
 }
+
+function getRequestOpts(method = 'GET', headerName = 'header' ) {
+  return {
+    method,
+    [headerName]: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': authStore.token
+    }
+  }
+}
+
+async function fetch_production(pathname: string, options: any = {}, handle401 = true) {
+  const { method = 'GET', data = {} } = options;
+  const methodStr = method.toUpperCase();
+  const request: any = getRequestOpts(methodStr, 'headers');
+  request.baseUrl = apiOrigin;
+  request.url = pathname;
+  if (methodStr === 'GET' || methodStr === 'DELETE') {
+    request.qs = data;
+  } else {
+    request.body = JSON.stringify(data);
+  }
+  const { result: { response: { statusCode, headers }, body } } = await wx.cloud.callFunction({
+    name: 'request',
+    data: { request }
+  });
+
+  const res = {
+    header: headers,
+    statusCode,
+    data: body
+  }
+  return handleResponse(pathname, options, handle401)(res);
+}
+
+function fetch_development(pathname: string, options: any = {}, handle401 = true) {
+  const mergeUrl = urlConcat(apiOrigin, pathname)
+  const apiName = options.apiName || 'request'
+  const opts = Object.assign({}, getRequestOpts(), options)
+  return wx[apiName]({ url: mergeUrl, ...opts })
+    .then(handleResponse(pathname, options, handle401));
+}
+
+const fn = {
+  development: fetch_development,
+  production: fetch_production
+}
+
+const { NODE_ENV = 'development' } = process.env;
+
+export const fetch = fn[NODE_ENV];
+

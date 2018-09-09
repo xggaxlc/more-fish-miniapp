@@ -4,7 +4,7 @@ import * as dayjs from "dayjs";
 class SettingStore {
   timestamp: number;
   @observable currentYear = dayjs().year();
-  @observable currentMonth = dayjs().month();
+  @observable currentMonth = dayjs().month() + 1;
 
   @action
   setTimestamp(timestamp: number) {
