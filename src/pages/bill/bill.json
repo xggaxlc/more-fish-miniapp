@@ -1,6 +1,7 @@
 {
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "usingComponents": {
-    "loading-screen": "/components/loading-screen/loading-screen"
+    "loading-screen": "/components/loading-screen/loading-screen",
+    "i-load-more": "/i-view/load-more/index"
   }
 }

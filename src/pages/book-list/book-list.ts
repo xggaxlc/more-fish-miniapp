@@ -18,6 +18,10 @@ observer({
     return pullDownRefresh(bookListStore.fetchData());
   },
 
+  onReachBottom() {
+    return !bookListStore.complete && autoLoading(bookListStore.fetchMoreData());
+  },
+
   async handleStart(e) {
     const { id } = e.currentTarget.dataset;
     await autoLoading(userStore.updateCurrentBook(id));

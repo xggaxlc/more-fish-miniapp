@@ -59,6 +59,7 @@
           <template is="bill" data="{{ item }}" />
         </block>
       </block>
+      <i-load-more i-class="load-more" tip="{{ billListStore.complete ? '没有更多了' : '' }}" loading="{{ billListStore.isFetching }}"  />
     </view>
 
   </view>

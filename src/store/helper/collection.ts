@@ -11,7 +11,7 @@ export class Collection extends WebAPIStore {
   @observable
   meta = {
     page: 1,
-    limit: 20,
+    limit: 5,
     count: 0
   }
 
@@ -27,8 +27,8 @@ export class Collection extends WebAPIStore {
   }
 
   @fetchAction.merge
-  async* fetchMoreData(options) {
-    const { data, meta } = yield this.fetchApi({ page: +this.meta.page + 1, per_page: this.meta.limit, ...this.params, ...options });
+  async fetchMoreData(options = {}) {
+    const { data, meta } = await this.fetchApi({ page: +this.meta.page + 1, limit: this.meta.limit, ...this.params, ...options });
     return {
       meta,
       data: [...this.data, ...this.transformData(data)]
