@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production node ./scripts/build",
-    "start": "cross-env NODE_ENV=production node ./scripts/run"
+    "start": "node ./scripts/run"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
