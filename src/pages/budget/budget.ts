@@ -38,11 +38,5 @@ observer({
 
   handleEdit(id) {
     wx.navigateTo({ url: `/pages/budget-form/budget-form?id=${id}` });
-  },
-
-  onShareAppMessage() {
-    return {
-      imageUrl: '/images/img-share.png'
-    }
-  },
+  }
 });

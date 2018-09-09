@@ -18,12 +18,6 @@ observer({
     return pullDownRefresh(bookListStore.fetchData());
   },
 
-  onShareAppMessage() {
-    return {
-      imageUrl: '/images/img-share.png'
-    }
-  },
-
   async handleStart(e) {
     const { id } = e.currentTarget.dataset;
     await autoLoading(userStore.updateCurrentBook(id));

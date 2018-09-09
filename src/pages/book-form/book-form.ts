@@ -70,7 +70,6 @@ observer({
     const bookStore = this.props.bookStore;
     return {
       title: `${userStore.data.nickName}邀请你加入${bookStore.data.name}`,
-      imageUrl: '/images/img-share.png',
       path: `/pages/join-book/join-book?id=${bookStore.data._id}&user_id=${userStore.data._id}`
     }
   }
