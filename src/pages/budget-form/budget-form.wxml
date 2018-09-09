@@ -11,7 +11,7 @@
       </view>
       <view class="input-group">
         <image src="/images/icon-money.png" class="icon-money" />
-        <input type="number" placeholder="输入金额" name="amount" value="{{ budgetStore.data.amount }}" />
+        <input type="digit" placeholder="输入金额" name="amount" value="{{ budgetStore.data.amount }}" />
       </view>
       <view class="input-group">
         <image src="/images/icon-flag.png" class="icon-flag" />
