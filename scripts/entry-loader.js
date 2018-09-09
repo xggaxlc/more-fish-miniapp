@@ -31,5 +31,5 @@ ${importInject}
 exports.${fnName} = function() {
   ${source}
 };
-  `
+  `;
 }
