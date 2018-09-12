@@ -1,8 +1,8 @@
-const { ip, NODE_ENV = 'development', PORT = 4000 } = process.env;
+const { IP, NODE_ENV = 'development', PORT = 4000 } = process.env;
 
 const environmentConfig = {
   development: {
-    apiOrigin: `http://${ip}:${PORT}`,
+    apiOrigin: `http://${IP}:${PORT}`,
     clouldeEnv: 'develop-6e2138'
   },
   production: {

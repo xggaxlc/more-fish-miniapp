@@ -69,7 +69,7 @@ function getWebpackConfig(entry = []) {
           ]
         },
         {
-          test: /\.(scss)$/,
+          test: /\.scss$/,
           use: [
             {
               loader: 'file-loader',
@@ -125,8 +125,8 @@ function getWebpackConfig(entry = []) {
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(NODE_ENV),
-          ip: JSON.stringify(IP),
-          port: JSON.stringify(PORT),
+          IP: JSON.stringify(IP),
+          PORT: JSON.stringify(PORT),
         }
       }),
       new WeappWebpackPlugin({
