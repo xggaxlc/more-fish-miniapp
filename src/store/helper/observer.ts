@@ -5,7 +5,7 @@ import forEach from 'lodash-es/forEach';
 import noop from 'lodash-es/noop';
 import activate from './activate'
 
-export function observer(options: any = {}, ...args) {
+export function observer(options: IPage = {}, ...args) {
   const { onLoad, onHide, onShow, onUnload, onShareAppMessage = noop, _needUpdateUserInfo = false } = options
   const propsDescriptor = Object.getOwnPropertyDescriptor(options, 'props')
   Object.defineProperty(options, 'props', { value: null })
