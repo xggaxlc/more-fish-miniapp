@@ -18,12 +18,6 @@ export class BookStore extends WebAPIStore {
     return fetch(`/books/${this.instanceKey}`);
   }
 
-  @asyncAction
-  async* fetchJoinData() {
-    const { data } =  yield fetch(`/books/${this.instanceKey}/join`);
-    this.data = data;
-  }
-
   @computed
   get userIsMember() {
     const user = this.data.users
