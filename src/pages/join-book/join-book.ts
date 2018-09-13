@@ -13,7 +13,7 @@ observer({
 
   async onLoad() {
     const store = this.props.bookStore;
-    await store.fetchJoinData();
+    await store.fetchData();
 
     if (store.userIsMember) {
       wx.hideLoading();
