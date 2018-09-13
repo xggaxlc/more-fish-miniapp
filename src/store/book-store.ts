@@ -48,15 +48,18 @@ export class BookStore extends WebAPIStore {
   }
 
   // 删除成员
-  @asyncAction
-  async* deleteBookMember(id) {
-    const { data } = yield fetch(`/books/${this.instanceKey}/deleteUser`, { method: 'PUT', data: { id } });
-    this.data = data;
+  deleteBookMember(id) {
+    const userIds = this.data.users.map(item => item._id);
+    const index = userIds.findIndex(userId => String(userId) === String(id));
+    if (index !== -1) {
+      userIds.splice(index, 1);
+      return this.updateBook({ users: userIds });
+    }
   }
 
   // 退出账本
   exitBook() {
-    return this.deleteBookMember(userStore.data._id);
+    return fetch(`/books/${this.instanceKey}/exit`, { method: 'PUT' });
   }
 
   @asyncAction
