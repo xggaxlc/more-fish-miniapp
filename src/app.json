@@ -44,6 +44,12 @@
         "text": "预算"
       },
       {
+        "pagePath": "pages/stat/stat",
+        "selectedIconPath": "images/tab-icon-stat-active.png",
+        "iconPath": "images/tab-icon-stat.png",
+        "text": "统计"
+      },
+      {
         "pagePath": "pages/mine/mine",
         "selectedIconPath": "images/tab-icon-mine-active.png",
         "iconPath": "images/tab-icon-mine.png",

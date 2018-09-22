@@ -1,1 +1,5 @@
-统计
+<loading-screen>
+  <view class="page-stat">
+    <ec-canvas ec="{{ ec }}" bind:init="echartInit"></ec-canvas>
+  </view>
+</loading-screen>
