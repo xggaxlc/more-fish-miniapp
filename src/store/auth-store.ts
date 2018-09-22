@@ -1,6 +1,5 @@
-import { wxPromise } from './../utils/wx-promise';
 import { observable, action } from 'mobx';
-import { fetch } from '@utils';
+import { fetch, wxPromise } from '@utils';
 
 const TOKEN_KEY = 'token';
 

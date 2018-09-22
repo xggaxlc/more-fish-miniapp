@@ -1,23 +1,22 @@
-import { observer, checkCurrentBook, BillListStore, userStore, BillStore, BudgetListStore } from '@store';
+import { observer, billListStore, BillStore, budgetListStore } from '@store';
 import { autoLoading, goBack, showToast } from '@utils';
 import * as dayjs from 'dayjs';
 import get from 'lodash-es/get';
 
 observer({
+
+  _needCurrentBookId: true,
+
   get props() {
     const billId = this.options.id;
-    return checkCurrentBook()
-      .then(() => {
-        const stores: any = {
-          userStore,
-          billListStore: BillListStore.findOrCreate(userStore.currentBookId),
-          budgetListStore: BudgetListStore.findOrCreate(userStore.currentBookId)
-        }
-        if (billId) {
-          stores.billStore = BillStore.findOrCreate(billId);
-        }
-        return stores;
-      });
+    const stores: any = {
+      billListStore,
+      budgetListStore
+    }
+    if (billId) {
+      stores.billStore = BillStore.findOrCreate(billId);
+    }
+    return stores;
   },
 
   data: {

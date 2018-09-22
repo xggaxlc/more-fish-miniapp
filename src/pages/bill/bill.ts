@@ -1,19 +1,16 @@
-import { settingStore } from './../../store/setting-store';
-import { observer, userStore, checkCurrentBook, BillListStore, uiStore, BudgetListStore } from '@store';
-import { pullDownRefresh, autoLoading } from '@utils';
+import { observer, userStore, billListStore, uiStore, budgetListStore, settingStore } from '@store';
+import { pullDownRefresh } from '@utils';
 
 observer({
-  get props() {
-    return checkCurrentBook()
-      .then(() => {
-        return {
-          settingStore,
-          uiStore,
-          userStore,
-          billListStore: BillListStore.findOrCreate(userStore.currentBookId),
-          budgetListStore: BudgetListStore.findOrCreate(userStore.currentBookId)
-        }
-      });
+
+  _needCurrentBookId: true,
+
+  props: {
+    settingStore,
+    uiStore,
+    userStore,
+    billListStore,
+    budgetListStore
   },
 
   async onLoad() {

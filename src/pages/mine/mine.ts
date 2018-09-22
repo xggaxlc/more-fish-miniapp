@@ -1,9 +1,9 @@
-import { userStore } from '@store/user-store';
-import { observer } from "@store";
+import { observer, userStore } from "@store";
 import { pullDownRefresh } from '@utils';
 
 observer({
   _needUpdateUserInfo: true,
+  _needCurrentBookId: true,
 
   props: {
     userStore
