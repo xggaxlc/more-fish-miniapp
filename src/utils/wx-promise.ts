@@ -1,6 +1,7 @@
-function toPromise(wxApi, opt: any = {}) {
+function toPromise(wxApi, opt: any = {}, fn?) {
   return new Promise((resolve, reject) => {
-    wx[wxApi]({
+    fn = fn || wx[wxApi];
+    fn({
       ...opt,
       success: resolve,
       fail: reject
@@ -23,6 +24,6 @@ export const wxPromise = {
   getUserInfo: (opts?: wx.GetUserInfoOptions) => toPromise('getUserInfo', opts) as Promise<wx.GetUserInfoResult>,
   showToast: (opts?: wx.ShowToastOptions) => toPromise('showToast', opts) as Promise<void>,
   cloud: {
-    callFunction: (opts?: wx.ICloudCallFunctionOpts) => toPromise('showToast', opts) as Promise<wx.ICloudCallFunctionResult>,
+    callFunction: (opts?: wx.ICloudCallFunctionOpts) => toPromise('', opts, wx.cloud.callFunction) as Promise<wx.ICloudCallFunctionResult>,
   }
 }

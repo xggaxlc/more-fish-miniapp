@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "统计",
+  "usingComponents": {
+    "loading-screen": "/components/loading-screen/loading-screen",
+    "ec-canvas": "/components/ec-canvas/ec-canvas"
+  }
+}
