@@ -1,6 +1,6 @@
 import { settingStore } from './../../store/setting-store';
 import { observer, userStore, checkCurrentBook, BudgetListStore, BudgetStore, BillListStore } from '@store';
-import { autoLoading, showToast, showConfirmModal, pullDownRefresh } from '@utils';
+import { autoLoading, showToast, showConfirmModal, pullDownRefresh, wxPromise } from '@utils';
 
 observer({
   get props() {
@@ -31,7 +31,7 @@ observer({
       return false;
     }
     const id = e.currentTarget.dataset.id;
-    const { tapIndex } = await wx.showActionSheet({
+    const { tapIndex } = await wxPromise.showActionSheet({
       itemList: ['编辑', '删除']
     });
     tapIndex ? this.handleDelete(id) : this.handleEdit(id);

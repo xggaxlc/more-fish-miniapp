@@ -1,4 +1,4 @@
-import { showToast, showConfirmModal, showTipModal, autoLoading, pullDownRefresh } from '@utils';
+import { showToast, showConfirmModal, showTipModal, autoLoading, pullDownRefresh, wxPromise } from '@utils';
 import { observer, bookListStore, BookStore, userStore } from '@store';
 observer({
 
@@ -36,7 +36,7 @@ observer({
       return;
     }
 
-    const { tapIndex } = await wx.showActionSheet({
+    const { tapIndex } = await wxPromise.showActionSheet({
       itemList: ['编辑', '删除']
     });
     tapIndex ? this.handleDelete(id) : this.navToEdit(id);

@@ -15,7 +15,6 @@ g.Symbol = Symbol;
 require('core-js/modules/es7.promise.finally');
 require('core-js/modules/es7.symbol.async-iterator');
 
-import './utils/wx-shim';
 import { clouldeEnv } from './utils/environment';
 
 App({

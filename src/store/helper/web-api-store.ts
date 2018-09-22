@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { observable, toJS, computed } from 'mobx'
+import { observable, toJS, computed, action } from 'mobx'
 import { StoreHelper } from './store-helper'
 
 export class WebAPIStore extends StoreHelper {
@@ -10,11 +10,13 @@ export class WebAPIStore extends StoreHelper {
 
   fetchData(options?: any) {}
 
+  @action
   setPendingState(actionName) {
     this.isFetching = true
     this.logMessage('%cpending  ', 'color:blue', actionName)
   }
 
+  @action
   setFulfilledState(newState, actionName) {
     Object.assign(this, {
       isFetching: false,
@@ -25,6 +27,7 @@ export class WebAPIStore extends StoreHelper {
     this.logMessage('%cfulfilled', 'color:green', actionName)
   }
 
+  @action
   setRejectedState(error, actionName, options: any = {}) {
     const nextState = {
       error,

@@ -1,5 +1,5 @@
 import { WebAPIStore, fetchAction, asyncAction } from './helper';
-import { fetch, goTo } from '@utils';
+import { fetch, goTo, wxPromise } from '@utils';
 import { computed, observable } from 'mobx';
 import get from 'lodash-es/get';
 
@@ -32,9 +32,9 @@ class UserStore extends WebAPIStore {
   }
 
   async tryUpdateUser() {
-    const { authSetting } = await wx.getSetting();
+    const { authSetting } = await wxPromise.getSetting();
     if (get(authSetting, 'scope.userInfo')) {
-      const { userInfo } = await wx.getUserInfo();
+      const { userInfo } = await wxPromise.getUserInfo();
       return this.updateUser(userInfo);
     } else {
       const error: any = new Error('需要用户授权');
