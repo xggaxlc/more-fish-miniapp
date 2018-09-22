@@ -1,5 +1,5 @@
 <loading-screen>
   <view class="page-stat">
-    <ec-canvas ec="{{ ec }}" bind:init="echartInit"></ec-canvas>
+    <ec-canvas ec="{{ ec }}" bind:init="echartInit" wx:if="{{ statStore.data.length }}"></ec-canvas>
   </view>
 </loading-screen>
