@@ -1,4 +1,4 @@
-import { userStore } from './../user-store';
+import { userStore, checkCurrentBook } from './../user-store';
 import { autorun, isObservable, toJS } from 'mobx'
 import merge from 'lodash-es/merge';
 import forEach from 'lodash-es/forEach';
@@ -6,7 +6,7 @@ import noop from 'lodash-es/noop';
 import activate from './activate'
 
 export function observer(options: IPage = {}, ...args) {
-  const { onLoad, onHide, onShow, onUnload, onShareAppMessage = noop, _needUpdateUserInfo = false } = options
+  const { onLoad, onHide, onShow, onUnload, onShareAppMessage = noop, _needUpdateUserInfo = false, _needCurrentBookId = false } = options
   const propsDescriptor = Object.getOwnPropertyDescriptor(options, 'props')
   Object.defineProperty(options, 'props', { value: null })
 
@@ -41,11 +41,17 @@ export function observer(options: IPage = {}, ...args) {
       return this.afterLoad = (async() => {
         Object.defineProperty(this, 'props', propsDescriptor)
         Object.defineProperty(this, 'props', { value: this.props, writable: true })
+
+        await userStore.tryFetchData();
+
+        if (_needCurrentBookId) {
+          await checkCurrentBook();
+        }
+
         if (_needUpdateUserInfo) {
           await userStore.tryUpdateUser();
-        } else {
-          await userStore.tryFetchData();
         }
+
         if (this.props instanceof Promise) {
           const result = await this.props;
           this.props = result

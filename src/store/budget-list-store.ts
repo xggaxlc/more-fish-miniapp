@@ -1,17 +1,16 @@
 import { observable, computed, action } from 'mobx';
 import { WebAPIStore, fetchAction, asyncAction } from './helper';
-import { userStore } from './user-store';
 import get from 'lodash-es/get';
 import sumBy from 'lodash-es/sumBy';
-import { BudgetStore } from '@store/budget-store';
+import { BudgetStore } from './budget-store';
 import { fetch } from '@utils';
 
-export class BudgetListStore extends WebAPIStore {
+class BudgetListStore extends WebAPIStore {
   @observable data = [];
 
   @fetchAction.merge
   async fetchData() {
-    const { data: originData } = await fetch(`/books/${userStore.currentBookId}/budgets`);
+    const { data: originData } = await fetch('/books/$$bookId/budgets');
     const data = originData.map(item => BudgetStore.createOrUpdate(item._id, { data: item }));
     return { data };
   }
@@ -40,8 +39,10 @@ export class BudgetListStore extends WebAPIStore {
 
   @asyncAction
   async* create(data) {
-    const { data: { _id } } = yield fetch(`/books/${userStore.currentBookId}/budgets`, { method: 'POST', data });
+    const { data: { _id } } = yield fetch('/books/$$bookId/budgets', { method: 'POST', data });
     this.fetchData();
     return _id;
   }
 }
+
+export const budgetListStore = new BudgetListStore();

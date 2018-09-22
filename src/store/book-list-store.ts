@@ -1,6 +1,6 @@
-import { Collection, asyncAction } from '@store/helper';
+import { Collection, asyncAction } from './helper';
 import { fetch } from '@utils';
-import { BookStore } from '@store/book-store';
+import { BookStore } from './book-store';
 import { observable } from 'mobx';
 
 class BookListStore extends Collection {

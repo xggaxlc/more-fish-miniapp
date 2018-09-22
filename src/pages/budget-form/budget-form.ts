@@ -1,21 +1,19 @@
-import { observer, BudgetListStore, BudgetStore, checkCurrentBook, userStore } from '@store';
+import { observer, budgetListStore, BudgetStore } from '@store';
 import { autoLoading, goBack, showToast } from '@utils';
 
 observer({
+
+  _needCurrentBookId: true,
+
   get props() {
     const budgetId = this.options.id;
-    return checkCurrentBook()
-      .then(() => {
-        const stores: any = {
-          userStore,
-          budgetListStore: BudgetListStore.findOrCreate(userStore.currentBookId)
-        }
-        if (budgetId) {
-          stores.budgetStore = BudgetStore.findOrCreate(budgetId);
-          console.log(stores.budgetStore)
-        }
-        return stores;
-      })
+    const stores: any = {
+      budgetListStore
+    }
+    if (budgetId) {
+      stores.budgetStore = BudgetStore.findOrCreate(budgetId);
+    }
+    return stores;
   },
 
   data: {
@@ -39,7 +37,7 @@ observer({
       await autoLoading(budgetStore.update(body));
     } else {
       // 创建
-      await autoLoading(this.props.budgetListStore.create(body));
+      await autoLoading(budgetListStore.create(body));
     }
     await showToast('保存成功');
     goBack();

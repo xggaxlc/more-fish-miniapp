@@ -8,7 +8,7 @@
         text="{{ billStore.data.budget.name }}"
         active
       />
-      <view class="amount">{{ billStore.data.amount_formated }}</view>
+      <view class="amount">{{ billStore.amount_formated }}</view>
     </view>
 
     <view class="box-content">
@@ -24,14 +24,14 @@
           <image src="/images/icon-date.png" class="icon-date" />
           账单时间：
         </view>
-        <view class="desc">{{ billStore.data.time_formated }}</view>
+        <view class="desc">{{ billStore.time_formated }}</view>
       </view>
       <view class="item">
         <view class="box-name">
           <image src="/images/icon-time.png" class="icon-time" />
           记账时间：
         </view>
-        <view class="desc">{{ billStore.data.update_at_formated }}</view>
+        <view class="desc">{{ billStore.update_at_formated }}</view>
       </view>
       <view class="item">
         <view class="box-name">

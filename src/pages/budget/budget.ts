@@ -1,17 +1,14 @@
-import { settingStore } from './../../store/setting-store';
-import { observer, userStore, checkCurrentBook, BudgetListStore, BudgetStore, BillListStore } from '@store';
+import { observer, userStore, settingStore, budgetListStore, BudgetStore, billListStore } from '@store';
 import { autoLoading, showToast, showConfirmModal, pullDownRefresh, wxPromise } from '@utils';
 
 observer({
-  get props() {
-    return checkCurrentBook()
-      .then(() => {
-        return {
-          settingStore,
-          userStore,
-          budgetListStore: BudgetListStore.findOrCreate(userStore.currentBookId)
-        }
-      });
+
+  _needCurrentBookId: true,
+
+  props: {
+    settingStore,
+    userStore,
+    budgetListStore
   },
 
   onLoad() {
@@ -19,7 +16,7 @@ observer({
   },
 
   fetchData() {
-    return this.props.budgetListStore.fetchData();
+    return budgetListStore.fetchData();
   },
 
   onPullDownRefresh() {
@@ -41,7 +38,6 @@ observer({
     await showConfirmModal('预算');
     const budgetStore = BudgetStore.findOrCreate(id);
     await autoLoading(budgetStore.delete());
-    const billListStore = BillListStore.findOrCreate(userStore.currentBookId);
     billListStore.fetchData();
     showToast('删除成功');
   },

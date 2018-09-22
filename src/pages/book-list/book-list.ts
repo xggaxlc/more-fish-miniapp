@@ -8,10 +8,7 @@ observer({
   },
 
   onLoad() {
-    return Promise.all([
-      userStore.tryFetchData(),
-      bookListStore.fetchData()
-    ]);
+    return bookListStore.fetchData();
   },
 
   onPullDownRefresh() {

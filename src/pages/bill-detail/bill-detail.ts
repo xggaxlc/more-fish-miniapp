@@ -1,15 +1,14 @@
-import { observer, checkCurrentBook, BillStore, userStore } from '@store';
+import { observer, BillStore } from '@store';
 import { showConfirmModal, autoLoading, goBack } from '@utils';
 
 observer({
+
+  _needCurrentBookId: true,
+
   get props() {
-    return checkCurrentBook()
-      .then(() => {
-        return {
-          userStore,
-          billStore: BillStore.findOrCreate(this.options.id)
-        }
-      });
+    return {
+      billStore: BillStore.findOrCreate(this.options.id)
+    }
   },
 
   onLoad() {

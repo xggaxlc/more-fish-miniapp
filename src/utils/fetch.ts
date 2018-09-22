@@ -1,6 +1,5 @@
 import { wxPromise } from '@utils';
-import { settingStore } from './../store/setting-store';
-import { authStore } from '@store';
+import { userStore, authStore, settingStore } from '@store';
 import { apiOrigin } from './environment';
 import { urlConcat } from './url-concat';
 import get from 'lodash-es/get';
@@ -61,6 +60,7 @@ function getRequestOpts(method = 'GET', headerName = 'header' ) {
 }
 
 async function fetch_production(pathname: string, options: any = {}, handle401 = true) {
+  pathname = pathname.replace(/\$\$bookId/g, userStore.currentBookId);
   const { method = 'GET', data = {} } = options;
   const methodStr = method.toUpperCase();
   const request: any = getRequestOpts(methodStr, 'headers');
@@ -85,6 +85,7 @@ async function fetch_production(pathname: string, options: any = {}, handle401 =
 }
 
 function fetch_development(pathname: string, options: any = {}, handle401 = true) {
+  pathname = pathname.replace(/\$\$bookId/g, userStore.currentBookId);
   const mergeUrl = urlConcat(apiOrigin, pathname)
   const apiName = options.apiName || 'request'
   const opts = Object.assign({}, getRequestOpts(), options)

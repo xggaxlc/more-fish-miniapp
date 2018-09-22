@@ -1,5 +1,4 @@
-import { Collection } from '@store/helper';
-import { asyncAction, fetchAction } from './helper';
+import { asyncAction, Collection } from './helper';
 import { fetch } from '@utils';
 import { observable, computed } from 'mobx';
 import sumBy from 'lodash-es/sumBy';
@@ -25,12 +24,11 @@ function fromNow(time: string) {
   return dayjs(time).format('D日');
 }
 
-// instanceKey => currentBook._id
-export class BillListStore extends Collection {
+class BillListStore extends Collection {
 
   @observable amountOfMonth = [];
 
-  fetchApi = (params = {}) => fetch(`/books/${this.instanceKey}/bills`, { data: params })
+  fetchApi = (params = {}) => fetch('/books/$$bookId/bills', { data: params })
   @observable data = [];
 
   @computed
@@ -57,15 +55,21 @@ export class BillListStore extends Collection {
 
   @asyncAction
   async* fetchTotalAmount() {
-    const { data } = yield fetch(`/books/${this.instanceKey}/stat/getAmountGroupByDay`);
+    const { data } = yield fetch('/books/$$bookId/stat/getAmountGroupByDay');
     this.amountOfMonth = data;
   }
 
   @asyncAction
   async* create(body) {
-    const { data } = yield fetch(`/books/${this.instanceKey}/bills`, { method: 'POST', data: { ...body, time: dayjs(body.time).toDate() } });
-    this.fetchData();
-    this.fetchTotalAmount();
+    const { data } = yield fetch('/books/$$bookId/bills', { method: 'POST', data: { ...body, time: dayjs(body.time).toDate() } });
+    this.refresh();
     return data;
   }
+
+  refresh() {
+    this.fetchData();
+    this.fetchTotalAmount();
+  }
 }
+
+export const billListStore = new BillListStore();
