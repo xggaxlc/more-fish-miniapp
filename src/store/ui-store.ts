@@ -1,3 +1,4 @@
+import { wxPromise } from './../utils/wx-promise';
 import { computed, observable, action } from 'mobx';
 import { asyncAction } from './helper';
 import * as dayjs from 'dayjs';
@@ -8,7 +9,7 @@ class UIStore {
   @asyncAction
   async* fetchData() {
     // 可能不同页面拿到的信息不一致（比如tab页的windowHeight和非tab页的windowHeight）
-    const res = yield wx.getSystemInfo();
+    const res = yield wxPromise.getSystemInfo();
     this.systemInfo = res;
     return res;
   }

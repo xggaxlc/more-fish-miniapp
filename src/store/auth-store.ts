@@ -1,3 +1,4 @@
+import { wxPromise } from './../utils/wx-promise';
 import { observable, action } from 'mobx';
 import { fetch } from '@utils';
 
@@ -29,7 +30,7 @@ class AuthStore {
   }
 
   async login() {
-    const { code } = await wx.login();
+    const { code } = await wxPromise.login();
     const { data: { token } } = await fetch('/users/login', { method: 'POST', data: { code } });
     this.saveToken(token);
   }

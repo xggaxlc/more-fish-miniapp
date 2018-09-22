@@ -1,5 +1,6 @@
+import { wxPromise } from '@utils';
 export async function showTipModal(content = '', title = '提示') {
-  await wx.showModal({
+  await wxPromise.showModal({
     title,
     content,
     showCancel: false,
@@ -9,7 +10,7 @@ export async function showTipModal(content = '', title = '提示') {
 }
 
 export async function showConfirmModal(name, modalOpts: any = {}) {
-  const { confirm } = await wx.showModal({
+  const { confirm } = await wxPromise.showModal({
     title: modalOpts.title || `删除${name}`,
     content: modalOpts.content || `确认删除此${name}？`,
     confirmColor: '#FA4444'

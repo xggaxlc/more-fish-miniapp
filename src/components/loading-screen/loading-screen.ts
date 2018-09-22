@@ -2,10 +2,6 @@ import get from 'lodash-es/get';
 
 Component({
   properties: {
-    coverView: {
-      type: Boolean,
-      value: false
-    }
   },
 
   data: {

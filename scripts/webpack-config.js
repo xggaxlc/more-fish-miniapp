@@ -1,12 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
+const babel = require('@babel/core');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { appRoot, outputPath, bundleName } = require('./config');
 const WeappWebpackPlugin = require('./plugin');
 const { getEntryMap } = require('./utils');
 
-const { NODE_ENV, PORT, IP = require('ip').address() } = process.env;
+const { NODE_ENV = 'development', PORT, IP = require('ip').address() } = process.env;
+
+const babelOptions = {
+  presets: ['@babel/preset-env']
+}
 
 function getWebpackConfig(entry = []) {
 
@@ -35,6 +40,7 @@ function getWebpackConfig(entry = []) {
   }
 
   const config = {
+    devtool: NODE_ENV === 'development' ? 'cheap-source-map' : false,
     devtool: false,
     entry,
     output: {
@@ -61,9 +67,7 @@ function getWebpackConfig(entry = []) {
             { ...entryLoader },
             {
               loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env']
-              }
+              options: babelOptions
             },
             { ...entryFileLoader }
           ]
@@ -81,7 +85,13 @@ function getWebpackConfig(entry = []) {
             },
             'extract-loader',
             'css-loader',
-            'sass-loader'
+            {
+              loader: 'px2rpx-loader',
+              options: {
+                rpxUnit: 0.5
+              }
+            },
+            'sass-loader',
           ]
         },
         {
@@ -134,12 +144,22 @@ function getWebpackConfig(entry = []) {
         entryMap,
         bundleName
       }),
-      new CopyWebpackPlugin([{
-        from: `${appRoot}/**/*.+(png|jpg|jpeg|gif|wxs)`,
-        to: outputPath,
-        cache: true,
-        context: appRoot
-      }], { debug: false })
+      new CopyWebpackPlugin([
+        {
+          from: `${appRoot}/**/*.+(png|jpg|jpeg|gif|wxs)`,
+          to: outputPath,
+          cache: true,
+          context: appRoot,
+          async transform(content, filePath) {
+            const ext = path.extname(filePath);
+            if (ext === '.wxs') {
+              const { code } = await babel.transformAsync(content, babelOptions);
+              return code;
+            }
+            return content;
+          }
+        }
+      ], { debug: false }),
     ]
   }
 

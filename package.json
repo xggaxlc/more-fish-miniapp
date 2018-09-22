@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production node ./scripts/build",
-    "start": "node ./scripts/run"
+    "start": "node ./scripts/run",
+    "g": "node ./scripts/gen"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -26,6 +27,8 @@
     "lodash": "^4.17.10",
     "node-notifier": "^5.2.1",
     "node-sass": "^4.9.3",
+    "optimist": "^0.6.1",
+    "px2rpx-loader": "^0.1.10",
     "sass": "^1.13.0",
     "sass-loader": "^7.1.0",
     "shelljs": "^0.8.2",

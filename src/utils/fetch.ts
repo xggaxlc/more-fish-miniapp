@@ -1,3 +1,4 @@
+import { wxPromise } from '@utils';
 import { settingStore } from './../store/setting-store';
 import { authStore } from '@store';
 import { apiOrigin } from './environment';
@@ -70,7 +71,7 @@ async function fetch_production(pathname: string, options: any = {}, handle401 =
   } else {
     request.body = JSON.stringify(data);
   }
-  const { result: { response: { statusCode, headers }, body } } = await wx.cloud.callFunction({
+  const { result: { response: { statusCode, headers }, body } } = await wxPromise.cloud.callFunction({
     name: 'request',
     data: { request }
   });
@@ -87,7 +88,7 @@ function fetch_development(pathname: string, options: any = {}, handle401 = true
   const mergeUrl = urlConcat(apiOrigin, pathname)
   const apiName = options.apiName || 'request'
   const opts = Object.assign({}, getRequestOpts(), options)
-  return wx[apiName]({ url: mergeUrl, ...opts })
+  return wxPromise[apiName]({ url: mergeUrl, ...opts })
     .then(handleResponse(pathname, options, handle401));
 }
 
