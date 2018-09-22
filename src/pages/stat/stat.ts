@@ -1,5 +1,6 @@
 import { observer, statStore } from '@store';
 import * as echarts from '../../components/ec-canvas/echarts';
+import { pullDownRefresh } from '@utils';
 
 observer({
 
@@ -57,5 +58,9 @@ observer({
 
     chart.setOption(option);
     return chart;
-  }
+  },
+
+  onPullDownRefresh() {
+    return pullDownRefresh(statStore.getBudgetGroupByMonth());
+  },
 });
