@@ -1,10 +1,6 @@
 @import '../../styles/icon';
 @import '../../styles/color';
 
-.page-bill {
-  padding: 0 20rpx;
-}
-
 .item-bill,
 .box-timeline {
   padding-left: 70rpx;
@@ -82,7 +78,7 @@
 
 .box-header {
   position: relative;
-  height: 540rpx;
+  height: 534rpx;
 
   .bg {
     position: absolute;
@@ -97,11 +93,13 @@
     top: 0;
     left: 0;
     z-index: 2;
+    color: #fff;
   }
 
   .box-date {
-    font-size: 28rpx;
-    color: #666666;
+    font-size: 36px;
+    color: #FFFFFF;
+    letter-spacing: 5.4px;
     margin-top: 68rpx;
     text-align: center;
   }
@@ -109,7 +107,7 @@
   .box-head {
     display: flex;
     align-items: stretch;
-    margin: 90rpx 0 80rpx;
+    margin: 80rpx 0 85rpx;
     height: 120rpx;
 
     .item {
@@ -126,33 +124,40 @@
           content: '';
           right: 0;
           top: 0;
-          width: 2rpx;
+          width: 2px;/*px*/
           height: 100%;
-          background: $primary;
+          background: #fff;
         }
       }
 
       .name {
-        color: $primary;
         margin-bottom: 10rpx;
+        font-size: 28px;
+        line-height: 40px;
       }
 
       .total {
-        color: $yellow;
-        font-size: 48rpx;
+        font-size: 56px;
+        line-height: 65px;
       }
     }
   }
 
   .btn-record {
-    margin-bottom: 40rpx;
+    width: 240px;
+    height: 80px;
+    margin: 0 auto;
+    background:none;
+    
     image {
-      margin-right: 10rpx;
+      width: 100%;
+      height: 100%;
     }
   }
 }
 
 .box-list {
+  padding: 0 30px;
   margin-top: 60rpx;
   border-bottom: 1px solid transparent;
 }

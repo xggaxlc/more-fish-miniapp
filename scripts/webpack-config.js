@@ -88,7 +88,7 @@ function getWebpackConfig(entry = []) {
             {
               loader: 'px2rpx-loader',
               options: {
-                rpxUnit: 0.5
+                rpxUnit: 1
               }
             },
             'sass-loader',

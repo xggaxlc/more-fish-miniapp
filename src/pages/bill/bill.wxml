@@ -45,9 +45,8 @@
             <view class="total">{{ billListStore.totalAmount }}</view>
           </view>
         </view>
-        <navigator class="btn-primary border btn-record" url="/pages/bill-form/bill-form">
-          <image src="/images/icon-add-primary.png" class="icon-add-primary" />
-          记一笔
+        <navigator hover-class="none" class="btn-record" url="/pages/bill-form/bill-form">
+          <image src="/images/btn-add-bill.png" />
         </navigator>
       </view>
     </view>
