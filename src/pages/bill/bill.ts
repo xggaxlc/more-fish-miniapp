@@ -66,7 +66,7 @@ observer({
     const month = monthStr - 1;
     const currentParams = this.data.params;
     if (year !== currentParams.year || month !== currentParams.month) {
-      this.setData({ 'params.year': year, 'params.month': month }, this.fetchData);
+      this.setData({ 'params.year': year, 'params.month': month }, () => autoLoading(this.fetchData()));
     }
   },
 
