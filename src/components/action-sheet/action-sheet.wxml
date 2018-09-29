@@ -1,0 +1,8 @@
+<view class="component-action-sheet" catchtouchmove="preventScroll">
+  <view class="mask" wx:if="{{ show }}" bindtap="handleClose" />
+  <scroll-view scroll-y="{{ true }}" class="wrapper {{ show ? 'active' : '' }}" style="height: {{ height }}">
+    <view class="content">
+      <slot />
+    </view>
+  </scroll-view>
+</view>

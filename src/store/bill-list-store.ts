@@ -54,8 +54,8 @@ class BillListStore extends Collection {
   }
 
   @asyncAction
-  async* fetchTotalAmount() {
-    const { data } = yield fetch('/books/$$bookId/stat/getAmountGroupByDay');
+  async* fetchTotalAmount(params = {}) {
+    const { data } = yield fetch('/books/$$bookId/stat/getAmountGroupByDay', { data: params });
     this.amountOfMonth = data;
   }
 

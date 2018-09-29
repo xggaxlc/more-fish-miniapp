@@ -1,0 +1,59 @@
+function formatNumber(n) {
+  const str = n.toString();
+  return str[1] ? str : `0${str}`;
+}
+
+function formatDate(dateStr, split = '-') {
+  if (!dateStr) return '';
+
+  const date = getDate(dateStr);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return [year, month, day].map(formatNumber).join(split);
+}
+
+function formatDateAndTime(dateStr, split = '-') {
+  if (!dateStr) return '';
+
+  const date = getDate(dateStr);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+
+  const t1 = [year, month, day].map(formatNumber).join(split);
+  const t2 = [hour, minute, second].map(formatNumber).join(':');
+
+  return `${t1} ${t2}`;
+}
+
+function now() {
+  return getDate().getTime();
+}
+
+function getYear(dateStr) {
+  if (!dateStr) return '';
+
+  const date = getDate(dateStr);
+  return date.getFullYear();
+}
+
+function getMonth(dateStr) {
+  if (!dateStr) return '';
+
+  const date = getDate(dateStr);
+  return date.getMonth();
+}
+
+module.exports = {
+  formatDate,
+  formatDateAndTime,
+  now,
+  getYear,
+  getMonth
+}

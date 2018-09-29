@@ -1,3 +1,5 @@
+<wxs src="../../wxs/time.wxs" module="timeModule" />
+
 <template name="bill">
   <navigator
     class="item-bill"
@@ -5,7 +7,7 @@
     hover-class="none"
   >
     <view class="box-top">
-      <view class="budget" style="color: {{ item.budget.color || '#666666' }}">{{ item.budget.name || '其他' }}</view>
+      <view class="budget">{{ item.budget.name || '其他' }}</view>
       <view class="amount">￥{{ item.amount }}</view>
     </view>
     <view class="box-bottom">
@@ -28,20 +30,32 @@
 
 <loading-screen>
   <view class="page-bill">
-
-    <!-- <navigator url="/pages/book-list/book-list" class="btn-primary" open-type="redirect">切换账本</navigator> -->
-
     <view class="box-header">
       <image src="/images/bg-bill.png" class="bg" />
       <view class="box-content">
-        <view class="box-date">{{ settingStore.currentYear }}-{{ settingStore.currentMonth }}</view>
+        <view class="box-date">
+          <picker
+            mode="date"
+            start="{{ timeModule.formatDate(userStore.data.currentBook.create_at) }}"
+            end="{{ timeModule.formatDate(timeModule.now()) }}"
+            fields="month"
+            bindchange="handleDateChange"
+            value="{{ params.year }}-{{ params.month + 1 }}"
+          >
+            <view class="picker">
+              {{ params.year }}-{{ params.month + 1 }}
+              <image src="/images/icon-arrow-down.png" class="icon-arrow-down" />
+            </view>
+          </picker>
+        </view>
+
         <view class="box-head">
           <view class="box-budget item">
-            <view class="name">{{ settingStore.currentMonth }}月预算</view>
+            <view class="name">{{ params.month + 1 }}月预算</view>
             <view class="total">{{ budgetListStore.total }}</view>
           </view>
           <view class="box-expense item">
-            <view class="name">{{ settingStore.currentMonth }}月支出</view>
+            <view class="name">{{ params.month + 1 }}月支出</view>
             <view class="total">{{ billListStore.totalAmount }}</view>
           </view>
         </view>
@@ -51,7 +65,21 @@
       </view>
     </view>
 
-    <view class="box-list">
+    <view class="box-empty" wx:if="{{ billListStore.isEmpty }}">
+      <image src="/images/empty-bill.png" />
+      <view>这里还没有内容呢~</view>
+      <view class="filter-btn" bindtap="toggleFilterBox" wx:if="{{ params.budget }}">重新筛选</view>
+    </view>
+
+    <view class="box-list" wx:else>
+
+      <view class="box-filter">
+        <view class="content {{ params.budget ? 'active' : '' }}" bindtap="toggleFilterBox">
+          筛选
+          <image src="/images/icon-filter.png" class="icon-filter" />
+        </view>
+      </view>
+
       <block wx:for="{{ billListStore.dataGroupByDate }}" wx:key="{{ index }}" wx:for-item="group">
         <template is="timeline" data="{{ fromNow: group.fromNow, amount: group.amount }}" />
         <block wx:for="{{ group.data }}" wx:key="_id">
@@ -63,3 +91,26 @@
 
   </view>
 </loading-screen>
+
+<action-sheet show="{{ showFilter }}" bind:close="toggleFilterBox">
+  <view class="actionsheet-filter">
+    <scroll-view scroll-y class="content">
+      <view class="box-title">
+        <view class="title">筛选费用分类</view>
+        <view class="reset" bindtap="handleResetBudget">重置</view>
+      </view>
+      <view class="box-item">
+        <block wx:for="{{ budgetListStore.data }}" wx:key="_id">
+          <view class="item {{ filter.budget === item.data._id ? 'active' : '' }}" data-id="{{ item.data._id }}" bindtap="handleFilterBudget">
+            {{ item.data.name }}
+            <image src="/images/icon-ok-with-bg.png" wx:if="{{ filter.budget === item.data._id }}" />
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <view class="footer">
+      <view class="btn" bindtap="toggleFilterBox">取消</view>
+      <view class="btn" bindtap="handleApplyFilter">确定</view>
+    </view>
+  </view>
+</action-sheet>

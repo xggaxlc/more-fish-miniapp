@@ -9,8 +9,8 @@ class BudgetListStore extends WebAPIStore {
   @observable data = [];
 
   @fetchAction.merge
-  async fetchData() {
-    const { data: originData } = await fetch('/books/$$bookId/budgets');
+  async fetchData(params = {}) {
+    const { data: originData } = await fetch('/books/$$bookId/budgets', { data: params });
     const data = originData.map(item => BudgetStore.createOrUpdate(item._id, { data: item }));
     return { data };
   }
