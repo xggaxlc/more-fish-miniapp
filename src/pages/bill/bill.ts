@@ -55,8 +55,9 @@ observer({
   },
 
   onReachBottom() {
+    const params = this.getParams();
     const { billListStore } = this.props;
-    return !billListStore.complete && billListStore.fetchMoreData();
+    return !billListStore.complete && billListStore.fetchMoreData(params);
   },
 
   handleDateChange(e) {

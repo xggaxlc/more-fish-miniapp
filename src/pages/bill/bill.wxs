@@ -1,0 +1,13 @@
+function getBudgetById(budgets, id) {
+  budgets = budgets || [];
+  id = id || '';
+  for (let i = 0; i < budgets.length; i++) {
+    if (budgets[i].data && budgets[i].data._id === id) {
+      return budgets[i].data;
+    }
+  }
+}
+
+module.exports = {
+  getBudgetById
+}
