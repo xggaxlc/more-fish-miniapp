@@ -7,7 +7,7 @@ import sumby from 'lodash-es/sumBy';
 class StatStore extends WebAPIStore {
 
   @observable form = {
-    yearMode: true,
+    yearMode: false,
     year: dayjs().year(),
     month: dayjs().month()
   }

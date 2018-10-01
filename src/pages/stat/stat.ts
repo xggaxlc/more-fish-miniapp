@@ -1,7 +1,7 @@
-import { observer, statStore } from '@store';
-import * as echarts from '../../components/ec-canvas/echarts';
+import { observer, statStore, userStore } from '@store';
 import { pullDownRefresh, autoLoading, sleep } from '@utils';
 import * as dayjs from 'dayjs';
+const echarts = require('../../components/ec-canvas/echarts');
 
 function echartInit(data = []) {
   return (canvas, width, height) => {
@@ -64,7 +64,8 @@ observer({
   _needCurrentBookId: true,
 
   props: {
-    statStore
+    statStore,
+    userStore
   },
 
   data: {
