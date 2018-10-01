@@ -1,0 +1,5 @@
+<view class="component-empty">
+  <image src="/images/empty-bill.png" />
+  <view>{{ title }}</view>
+  <slot />
+</view>

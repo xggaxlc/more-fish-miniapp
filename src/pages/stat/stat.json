@@ -3,6 +3,9 @@
   "navigationBarTitleText": "统计",
   "usingComponents": {
     "loading-screen": "/components/loading-screen/loading-screen",
-    "ec-canvas": "/components/ec-canvas/ec-canvas"
+    "ec-canvas": "/components/ec-canvas/ec-canvas",
+    "empty": "/components/empty/empty",
+    "circle-text": "/components/circle-text/circle-text",
+    "progress": "/i-view/progress/index"
   }
 }

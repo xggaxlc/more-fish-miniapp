@@ -51,25 +51,22 @@ Component({
         return canvas;
       });
 
-      const runInit = () => {
-        var query = wx.createSelectorQuery().in(this);
-        query.select('.ec-canvas').boundingClientRect(res => {
-          if (typeof callback === 'function') {
-            this.chart = callback(canvas, res.width, res.height);
-          }
-          else if (this.data.ec && typeof this.data.ec.onInit === 'function') {
-            this.chart = this.data.ec.onInit(canvas, res.width, res.height);
-          }
-          else {
-            this.triggerEvent('init', {
-              canvas: canvas,
-              width: res.width,
-              height: res.height
-            });
-          }
-        }).exec();
-      }
-      setTimeout(runInit, 200);
+      var query = wx.createSelectorQuery().in(this);
+      query.select('.ec-canvas').boundingClientRect(res => {
+        if (typeof callback === 'function') {
+          this.chart = callback(canvas, res.width, res.height);
+        }
+        else if (this.data.ec && typeof this.data.ec.onInit === 'function') {
+          this.chart = this.data.ec.onInit(canvas, res.width, res.height);
+        }
+        else {
+          this.triggerEvent('init', {
+            canvas: canvas,
+            width: res.width,
+            height: res.height
+          });
+        }
+      }).exec();
     },
 
     canvasToTempFilePath(opt) {

@@ -1,0 +1,8 @@
+function toFixed(num, digits = 2) {
+  const number = +num || 0;
+  return number.toFixed(digits);
+}
+
+module.exports = {
+  toFixed
+}
