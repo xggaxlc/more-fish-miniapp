@@ -15,14 +15,14 @@ g.Symbol = Symbol;
 require('core-js/modules/es7.promise.finally');
 require('core-js/modules/es7.symbol.async-iterator');
 
-import { clouldeEnv } from './utils/environment';
+import { cloudEnv } from './utils/environment';
 
 App({
   onLaunch() {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
-      wx.cloud.init({ env: clouldeEnv })
+      wx.cloud.init({ env: cloudEnv })
     }
     this.globalData = {}
   }
