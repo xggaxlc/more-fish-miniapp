@@ -1,4 +1,5 @@
 <wxs src="../../wxs/number.wxs" module="numberModule" />
+<wxs src="../../wxs/time.wxs" module="timeModule" />
 
 <loading-screen>
   <view class="page-stat">
