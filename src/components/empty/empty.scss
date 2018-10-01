@@ -1,0 +1,16 @@
+.component-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: #999999;
+  margin-top: 134px;
+
+  image {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 30px;
+    vertical-align: top;
+  }
+}

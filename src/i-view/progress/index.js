@@ -6,6 +6,10 @@ Component({
             type: Number,
             value: 0
         },
+        color: {
+          type: String,
+          value: '#2db7f5'
+        },
         // normal || active || wrong || success
         status: {
             type: String,

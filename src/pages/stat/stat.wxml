@@ -1,5 +1,72 @@
+<wxs src="../../wxs/number.wxs" module="numberModule" />
+
 <loading-screen>
   <view class="page-stat">
-    <ec-canvas ec="{{ ec }}" bind:init="echartInit" wx:if="{{ statStore.data.length }}"></ec-canvas>
+    <view class="box-header">
+      <image src="/images/bg-stat.png" class="bg" />
+      <view class="box-content">
+        <view class="box-tab">
+          <view class="item {{ statStore.form.yearMode ? '' : 'active' }}" data-mode="month" bindtap="toggleMode">月</view>
+          <view class="item {{ statStore.form.yearMode ? 'active' : '' }}" data-mode="year" bindtap="toggleMode">年</view>
+        </view>
+        <view class="box-picker">
+          <picker
+            mode="date"
+            start="{{ timeModule.formatDate(userStore.data.currentBook.create_at) }}"
+            end="{{ timeModule.formatDate(timeModule.now()) }}"
+            fields="{{ statStore.form.yearMode ? 'year' : 'month' }}"
+            bind:change="handleDateChange"
+            value="{{ statStore.datePickerValue }}"
+          >
+            <view class="picker">
+              {{ statStore.datePickerValue }}
+              <image src="/images/icon-arrow-down.png" class="icon-arrow-down" />
+            </view>
+          </picker>
+        </view>
+        <view class="box-amount">
+          <view class="item">
+            <view class="title">{{ statStore.budgetTitle }}</view>
+            <view class="amount">{{ numberModule.toFixed(statStore.budgetAmount) }}</view>
+          </view>
+          <view class="item">
+            <view class="title">{{ statStore.billTitle }}</view>
+            <view class="amount">{{ numberModule.toFixed(statStore.billAmount) }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <empty wx:if="{{ statStore.isFulfilled && !statStore.data.length }}" />
+    <view class="box-content" wx:else>
+
+      <ec-canvas id="canvas-pie" ec="{{ ec }}" />
+
+      <view class="box-list">
+        <view class="card" wx:for="{{ statStore.data }}" wx:key="_id">
+          <circle-text
+            text="{{ item._id }}"
+            color="{{ item.color }}"
+            active
+          />
+          <view class="box-info">
+            <view class="box-text">
+              <view class="bill {{ item.amount > item.budget_amount ? 'text-danger' : '' }}">
+                支出<view class="amount {{ item.amount > item.budget_amount ? 'text-danger' : '' }}">{{ numberModule.toFixed(item.amount) }}</view>
+              </view>
+              <view class="budget">
+                预算<view class="amount">{{ numberModule.toFixed(item.budget_amount) }}</view>
+              </view>
+            </view>
+            <progress
+              color="{{ item.amount > item.budget_amount ? '#FA4444' : item.color }}"
+              percent="{{ item.amount / (item.budget_amount || 0.01) * 100 }}"
+              stroke-width="{{ 8 }}"
+              hide-info
+            />
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </loading-screen>
