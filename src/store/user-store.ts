@@ -1,3 +1,4 @@
+import { toRGB } from '@utils';
 import { WebAPIStore, fetchAction, asyncAction } from './helper';
 import { fetch, goTo, wxPromise } from '@utils';
 import { computed, observable } from 'mobx';
@@ -56,6 +57,12 @@ class UserStore extends WebAPIStore {
   @computed
   get isCurrentBookCreator() {
     return String(this.data._id) === String(get(this.data, 'currentBook.create_user'));
+  }
+
+  @computed
+  get currentBookColorRgb() {
+    const hex = get(this.data, 'currentBook.color', '').replace('#', '');
+    return toRGB(hex);
   }
 }
 

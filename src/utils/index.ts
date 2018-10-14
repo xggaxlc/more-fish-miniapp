@@ -7,3 +7,4 @@ export * from './modal';
 export * from './show-toast';
 export * from './nav';
 export * from './wx-promise';
+export * from './color';

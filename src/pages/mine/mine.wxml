@@ -1,7 +1,7 @@
 <loading-screen>
   <view class="page-mine">
     <view class="box-header">
-      <image class="cover" src="/images/bg-mine.png" />
+      <image class="cover" src="/images/bg-mine.jpg" />
       <view class="content">
         <image src="{{ userStore.data.avatarUrl }}" class="avatar" />
         <view class="name">{{ userStore.data.nickName }}</view>
@@ -9,22 +9,25 @@
     </view>
 
     <view class="box-content">
+      <view class="title">当前账本</view>
       <view class="box-menu">
-        <navigator class="item" hover-class="none" url="/pages/book-detail/book-detail?id={{ userStore.data.currentBook._id }}">
-          <view class="box-left">
-            <image src="/images/icon-image-book.png" style="background: {{ userStore.data.currentBook.color }}" class="icon-image-book" />
-            <view class="info">
-              <view class="name">{{ userStore.data.currentBook.name }}</view>
-              <view class="role {{ userStore.isCurrentBookCreator ?  'admin' : '' }}">{{ userStore.isCurrentBookCreator ? '管理员' : '成员' }}</view>
-            </view>
+        <navigator
+          style="background: {{ userStore.data.currentBook.color }}; box-shadow: 0 16rpx 30rpx 0 rgba({{ userStore.currentBookColorRgb[0] }}, {{ userStore.currentBookColorRgb[1] }}, {{ userStore.currentBookColorRgb[2] }}, 0.30)"
+          class="item"
+          hover-class="none"
+          url="/pages/book-detail/book-detail?id={{ userStore.data.currentBook._id }}"
+        >
+          <image mode="widthFix" src="/images/bg-current-book.png" style="background: {{ userStore.data.currentBook.color }}" class="bg-image-book" />
+          <view class="info">
+            <view class="name">{{ userStore.data.currentBook.name }}</view>
+            <view class="role {{ userStore.isCurrentBookCreator ?  'admin' : '' }}">{{ userStore.isCurrentBookCreator ? '管理员' : '成员' }}</view>
           </view>
-          <image src="/images/icon-arrow-right.png" class="icon icon-arrow-right" />
         </navigator>
       </view>
 
       <view class="box-btn">
-        <navigator hover-class="none" url="/pages/book-list/book-list" class="btn btn-primary" open-type="redirect">切换账本</navigator>
-        <navigator hover-class="none" url="/pages/book-form/book-form" class="btn btn-primary border">添加账本</navigator>
+        <navigator hover-class="none" url="/pages/book-list/book-list" class="btn btn-primary gray" open-type="redirect"><image src="/images/icon-refresh-gray.png" class="icon-refresh-gray" />切换账本</navigator>
+        <navigator hover-class="none" url="/pages/book-form/book-form" class="btn btn-primary gray"><image src="/images/icon-add-gray.png" class="icon-add" />添加账本</navigator>
       </view>
     </view>
   </view>
