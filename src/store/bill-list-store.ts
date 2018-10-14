@@ -1,4 +1,4 @@
-import { budgetListStore } from '@store';
+import { budgetListStore, settingStore } from '@store';
 import { asyncAction, Collection, fetchAction } from './helper';
 import { fetch } from '@utils';
 import { observable, computed, action } from 'mobx';
@@ -31,13 +31,11 @@ class BillListStore extends Collection {
   @observable amountOfMonth = [];
 
   @observable form = {
-    year: dayjs().year(),
-    month: dayjs().month(),
     budget: '',
     user: ''
   }
 
-  fetchApi = (params = {}) => fetch('/books/$$bookId/bills', { data: { ...this.getParams(), ...params } });
+  fetchApi = (params = {}) => fetch('/books/$$bookId/bills', { data: { ...this.form, ...settingStore.datePickerParams,  ...params } });
   @observable data = [];
 
   @action
@@ -45,21 +43,9 @@ class BillListStore extends Collection {
     Object.assign(this.form, body);
   }
 
-  getParams() {
-    const { year, month, budget, user } = this.form;
-    const $time = dayjs().set('year', year).set('month', month);
-
-    return {
-      start_at: $time.startOf('month').toISOString(),
-      end_at: $time.endOf('month').toISOString(),
-      budget,
-      user
-    }
-  }
-
   @fetchAction.merge
   async fetchData(options = {}) {
-    const params = { ...this.getParams(), ...options };
+    const params = { ...this.form, ...settingStore.datePickerParams, ...options };
     const [{ data, meta }, , { data: amountOfMonth }] = await Promise.all([
       this.fetchApi({ page: 1, limit: this.meta.limit, ...this.params, ...params }),
       budgetListStore.fetchData(params),
@@ -82,7 +68,7 @@ class BillListStore extends Collection {
         return timeObj.year() === year && timeObj.month() === month - 1 && timeObj.date() === date;
       });
       return {
-        amount: (+amount).toFixed(2),
+        amount,
         fromNow: fromNow(`${year}/${month}/${date}`),
         data
       }
@@ -92,15 +78,13 @@ class BillListStore extends Collection {
 
   @computed
   get totalAmount() {
-    return sumBy(this.amountOfMonth, item => item.amount).toFixed(2);
+    return sumBy(this.amountOfMonth, item => item.amount);
   }
 
   @asyncAction
   async* create(body) {
     const { data } = yield fetch('/books/$$bookId/bills', { method: 'POST', data: { ...body, time: dayjs(body.time).toDate() } });
-    if (dayjs(data.time).format('YYYY-MM') !== this.currentDate) {
-      this.refresh();
-    }
+    this.refresh();
     return data;
   }
 
@@ -109,29 +93,9 @@ class BillListStore extends Collection {
   }
 
   @computed
-  get currentDate() {
-    const { year, month } = this.form;
-    const $time = dayjs().set('year', year).set('month', month);
-    return $time.format('YYYY-MM');
-  }
-
-  @computed
-  get currentBudgetTitle() {
-    const { month } = this.form;
-    return `${month + 1}月预算`;
-  }
-
-  @computed
   get currentBudget() {
     const { budget } = this.form;
-    const amount = budget ? get(budgetListStore.data.find(item => String(item.data._id) === String(budget)), 'data.amount') : budgetListStore.total;
-    return (+amount || 0).toFixed(2);
-  }
-
-  @computed
-  get currentBillTitle() {
-    const { month } = this.form;
-    return `${month + 1}月支出`;
+    return budget ? get(budgetListStore.data.find(item => String(item.data._id) === String(budget)), 'data.to') : budgetListStore.total;
   }
 
   @computed

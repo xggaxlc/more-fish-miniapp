@@ -3,6 +3,7 @@
   "usingComponents": {
     "loading-screen": "/components/loading-screen/loading-screen",
     "i-load-more": "/i-view/load-more/index",
-    "action-sheet": "/components/action-sheet/action-sheet"
+    "action-sheet": "/components/action-sheet/action-sheet",
+    "global-date-picker": "/components/global-date-picker/global-date-picker"
   }
 }

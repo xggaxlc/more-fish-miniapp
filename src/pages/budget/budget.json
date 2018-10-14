@@ -2,6 +2,7 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "circle-text": "/components/circle-text/circle-text",
-    "loading-screen": "/components/loading-screen/loading-screen"
+    "loading-screen": "/components/loading-screen/loading-screen",
+    "global-date-picker": "/components/global-date-picker/global-date-picker"
   }
 }

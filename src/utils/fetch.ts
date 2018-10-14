@@ -35,7 +35,7 @@ function handleResponse(pathname: string, options = {}, handle401 = false) {
     const { statusCode } = response;
     if (statusCode >= 200 && statusCode < 300) {
       const timestamp = +get(response, 'header.timestamp') || +get(response, 'header.Timestamp') || 0;
-      timestamp && settingStore.setTimestamp(timestamp);
+      timestamp && settingStore.updateTimestamp(timestamp);
       return response.data;
     } else {
       if (handle401 && statusCode === 401) {

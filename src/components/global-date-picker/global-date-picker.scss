@@ -1,0 +1,18 @@
+@import '../../styles/share';
+
+.component-datepicker {
+  font-size: 36px;
+  color: #FFFFFF;
+  letter-spacing: 5.4px;
+  text-align: center;
+
+  .picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    image {
+      margin-left: 4px;
+    }
+  }
+}
