@@ -1,10 +1,27 @@
+<wxs src="../../wxs/time.wxs" module="timeModule" />
+<wxs src="../../wxs/number.wxs" module="numberModule" />
+
 <loading-screen>
   <view class="box-header">
     <image src="/images/bg-budget.jpg" class="bg" />
-    <view class="content">
-      <view class="box-time">{{ settingStore.currentYear }}-{{ settingStore.currentMonth }}</view>
+    <view class="box-content">
+      <view class="box-date">
+        <picker
+          mode="date"
+          start="{{ timeModule.formatDate(userStore.data.currentBook.create_at) }}"
+          end="{{ timeModule.formatDate(timeModule.now()) }}"
+          fields="month"
+          bindchange="handleDateChange"
+          value="{{ budgetListStore.currentDate }}"
+        >
+          <view class="picker">
+            {{ budgetListStore.currentDate }}
+            <image src="/images/icon-arrow-down.png" class="icon-arrow-down" />
+          </view>
+        </picker>
+      </view>
       <view class="box-title">
-        <image src="/images/icon-money-primary.png" class="icon-money-primary" />
+        <image src="/images/icon-money-white.png" class="icon-money-white" />
         <view>预算总额</view>
       </view>
       <view class="total">{{ budgetListStore.total }}</view>
@@ -23,10 +40,11 @@
         <circle-text
           text="{{ item.data.name }}"
           color="{{ item.data.color }}"
+          active
         />
         <view class="content">
           <view class="remark">{{ item.data.remark }}</view>
-          <view class="amount">预算<text class="strong">{{ item.data.amount }}</text></view>
+          <view class="amount">预算<text class="strong">{{ numberModule.toFixed(item.data.amount) }}</text></view>
         </view>
       </view>
     </view>

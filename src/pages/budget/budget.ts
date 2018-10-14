@@ -44,5 +44,17 @@ observer({
 
   handleEdit(id) {
     wx.navigateTo({ url: `/pages/budget-form/budget-form?id=${id}` });
-  }
+  },
+
+  handleDateChange(e) {
+    const value = e.detail.value;
+    const [yearStr, monthStr] = value.split('-');
+    const year = +yearStr;
+    const month = monthStr - 1;
+    const { year: currentYear, month: currentMonth } = budgetListStore.form;
+    if (year !== currentYear || month !== currentMonth) {
+      budgetListStore.updateForm({ year, month  });
+      autoLoading(this.fetchData());
+    }
+  },
 });
