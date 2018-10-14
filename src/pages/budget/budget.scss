@@ -1,16 +1,16 @@
 @import '../../styles/share';
 
 .box-header {
-  height: 359rpx;
+  height: 386rpx;
   position: relative;
-  margin-bottom: 30rpx;
+  margin-bottom: 60px;
 
   .bg {
     width: 100%;
     height: 100%;
   }
 
-  .content {
+  .box-content {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,49 +19,67 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50rpx;
 
-    .box-time {
-      color: #666666;
-      margin-bottom: 80rpx;
+    .box-date {
+      font-size: 36px;
+      color: #FFFFFF;
+      letter-spacing: 5.4px;
+      margin-top: 68px;
+      text-align: center;
+
+      .picker {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        image {
+          margin-left: 4px;
+        }
+      }
     }
 
     .box-title {
       display: flex;
       align-items: center;
-      color: $primary;
-      margin-bottom: 40rpx;
+      color: #fff;
+      margin-bottom: 30px;
+      margin-top: 70px;
 
       image {
-        margin-right: 20rpx;
+        margin-right: 10rpx;
       }
     }
 
     .total {
-      color: $yellow;
-      font-size: 48rpx;
+      color: #fff;
+      font-size: 56rpx;
+      line-height: 1;
     }
   }
 }
 
 .box-list {
   padding: 0 20rpx;
+  border-bottom: 1px solid transparent;
 
   .item {
     display: flex;
     align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #EFECEC;
+    box-shadow: 0 5px 30px 0 rgba(68,168,250,0.20);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
 
     circle-text {
       margin-right: 20rpx;
     }
 
     .content {
-      box-sizing: content-box;
       flex: 1;
       color: #999999;
-      padding: 30rpx 0;
       line-height: 1.5;
-      border-bottom: 1rpx solid $primary;
 
       .remark {
         margin-bottom: 8rpx;
@@ -78,7 +96,7 @@
 .btn-add {
   width: 150rpx;
   height: 155rpx;
-  margin: 100rpx auto 30rpx;
+  margin: 60 auto 30rpx;
 
   image {
     width: 100%;
