@@ -5,6 +5,7 @@ import { billListStore } from './bill-list-store';
 import * as dayjs from 'dayjs';
 
 export class BillStore extends WebAPIStore {
+
   @observable data: { [key: string]: any } = {};
 
   @fetchAction.merge
