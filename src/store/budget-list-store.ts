@@ -4,34 +4,14 @@ import get from 'lodash-es/get';
 import sumBy from 'lodash-es/sumBy';
 import { BudgetStore } from './budget-store';
 import { fetch } from '@utils';
-import * as dayjs from 'dayjs';
+import { settingStore } from '@store/setting-store';
 
 class BudgetListStore extends WebAPIStore {
   @observable data = [];
 
-  @observable form = {
-    year: dayjs().year(),
-    month: dayjs().month()
-  }
-
-  getParams() {
-    const { year, month } = this.form;
-    const $time = dayjs().set('year', year).set('month', month);
-
-    return {
-      start_at: $time.startOf('month').toISOString(),
-      end_at: $time.endOf('month').toISOString()
-    }
-  }
-
-  @action
-  updateForm(body) {
-    Object.assign(this.form, body);
-  }
-
   @fetchAction.merge
   async fetchData(params = {}) {
-    const { data: originData } = await fetch('/books/$$bookId/budgets', { data: { ...this.getParams(), ...params } });
+    const { data: originData } = await fetch('/books/$$bookId/budgets', { data: { ...settingStore.datePickerParams, ...params } });
     const data = originData.map(item => BudgetStore.createOrUpdate(item._id, { data: item }));
     return { data };
   }
@@ -62,13 +42,6 @@ class BudgetListStore extends WebAPIStore {
     const { data: { _id } } = yield fetch('/books/$$bookId/budgets', { method: 'POST', data });
     this.fetchData();
     return _id;
-  }
-
-  @computed
-  get currentDate() {
-    const { year, month } = this.form;
-    const $time = dayjs().set('year', year).set('month', month);
-    return $time.format('YYYY-MM');
   }
 }
 

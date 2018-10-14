@@ -5,21 +5,11 @@
   <view class="box-header">
     <image src="/images/bg-budget.jpg" class="bg" />
     <view class="box-content">
-      <view class="box-date">
-        <picker
-          mode="date"
-          start="{{ timeModule.formatDate(userStore.data.currentBook.create_at) }}"
-          end="{{ timeModule.formatDate(timeModule.now()) }}"
-          fields="month"
-          bindchange="handleDateChange"
-          value="{{ budgetListStore.currentDate }}"
-        >
-          <view class="picker">
-            {{ budgetListStore.currentDate }}
-            <image src="/images/icon-arrow-down.png" class="icon-arrow-down" />
-          </view>
-        </picker>
-      </view>
+      <global-date-picker
+        start="{{ timeModule.formatDate(userStore.data.currentBook.create_at) }}"
+        end="{{ timeModule.formatDate(timeModule.now()) }}"
+        bindchange="handleDateChange"
+      />
       <view class="box-title">
         <image src="/images/icon-money-white.png" class="icon-money-white" />
         <view>预算总额</view>

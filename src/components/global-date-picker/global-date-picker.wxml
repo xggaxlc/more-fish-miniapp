@@ -1,0 +1,15 @@
+<view class="component-datepicker">
+  <picker
+    mode="date"
+    start="{{ start }}"
+    end="{{ end }}"
+    fields="month"
+    bindchange="handleDateChange"
+    value="{{ value }}"
+  >
+    <view class="picker">
+      {{ value }}
+      <image src="/images/icon-arrow-down.png" class="icon-arrow-down" />
+    </view>
+  </picker>
+</view>

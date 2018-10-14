@@ -38,16 +38,8 @@ observer({
     return !billListStore.complete && billListStore.fetchMoreData();
   },
 
-  handleDateChange(e) {
-    const value = e.detail.value;
-    const [yearStr, monthStr] = value.split('-');
-    const year = +yearStr;
-    const month = monthStr - 1;
-    const { year: currentYear, month: currentMonth } = billListStore.form;
-    if (year !== currentYear || month !== currentMonth) {
-      billListStore.updateForm({ year, month  });
-      autoLoading(this.fetchData());
-    }
+  handleDateChange() {
+    autoLoading(this.fetchData());
   },
 
   handleFilterBudget(e) {
