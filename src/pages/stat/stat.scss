@@ -33,12 +33,11 @@
     display: flex;
     border: 2px solid #fff;
     border-radius: 5px;
-    background: #fff;
+    background: $primary;
     height: 40px;
     line-height: 40px;
-    color: $primary;
+    color: #fff;
     font-size: 28px;
-    font-weight: bold;
     overflow: hidden;
     margin: 0 auto;
 
@@ -48,8 +47,9 @@
       text-align: center;
 
       &.active {
-        color: #fff;
-        background: $primary;
+        color: $primary;
+        background: #fff;
+        font-weight: bold;
       }
     }
   }
