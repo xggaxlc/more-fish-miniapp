@@ -20,8 +20,8 @@
     "navigationBarTextStyle": "light"
   },
   "networkTimeout": {
-    "request": 10000,
-    "connectSocket": 10000,
+    "request": 20000,
+    "connectSocket": 20000,
     "uploadFile": 20000,
     "downloadFile": 20000
   },
