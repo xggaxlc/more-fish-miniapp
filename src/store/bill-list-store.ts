@@ -95,7 +95,7 @@ class BillListStore extends Collection {
   @computed
   get currentBudget() {
     const { budget } = this.form;
-    return budget ? get(budgetListStore.data.find(item => String(item.data._id) === String(budget)), 'data.to') : budgetListStore.total;
+    return budget ? get(budgetListStore.data.find(item => String(item.data._id) === String(budget)), 'data.amount') : budgetListStore.total;
   }
 
   @computed
