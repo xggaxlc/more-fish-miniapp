@@ -39,9 +39,11 @@
       </view>
     </view>
   </view>
-  <navigator class="btn-add" url="/pages/budget-form/budget-form" hover-class="none" wx:if="{{ userStore.isCurrentBookCreator }}">
-    <image src="/images/btn-budget.png" />
-  </navigator>
+  <view class="box-btn-add">
+    <navigator class="btn-add" url="/pages/budget-form/budget-form" hover-class="none" wx:if="{{ userStore.isCurrentBookCreator }}">
+      <image src="/images/btn-budget.png" />
+    </navigator>
+  </view>
 </loading-screen>
 
 

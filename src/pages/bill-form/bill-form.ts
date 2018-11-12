@@ -1,5 +1,5 @@
 import { observer, billListStore, BillStore, budgetListStore } from '@store';
-import { autoLoading, goBack, showToast } from '@utils';
+import { autoLoading, goBack } from '@utils';
 import * as dayjs from 'dayjs';
 import get from 'lodash-es/get';
 
@@ -52,7 +52,6 @@ observer({
       // 创建
       await autoLoading(this.props.billListStore.create(body));
     }
-    await showToast('保存成功');
     goBack();
   },
 
