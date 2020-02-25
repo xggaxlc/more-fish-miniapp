@@ -3,3 +3,4 @@ dist/
 build/
 project.config.json
 *.log
+src/utils/environment.ts

@@ -1,0 +1,12 @@
+const { IP, NODE_ENV = 'development', PORT = 4000 } = process.env;
+
+const environmentConfig = {
+  development: {
+    apiOrigin: `http://${IP}:${PORT}`
+  },
+  production: {
+    apiOrigin: ''
+  },
+}
+
+export const { apiOrigin } = environmentConfig[NODE_ENV]
