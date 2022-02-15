@@ -11,6 +11,7 @@ function toPromise(wxApi, opt: any = {}, fn?) {
 
 
 export const wxPromise = {
+  getUserProfile: (opts: any) => toPromise('getUserProfile', opts) as Promise<any>,
   login: () => toPromise('login') as Promise<wx.LoginResult>,
   getSetting: () => toPromise('getSetting') as Promise<wx.IAuthSetting>,
   showModal: (opts: wx.ShowModalOptions) => toPromise('showModal', opts) as Promise<wx.ShowModalResult>,

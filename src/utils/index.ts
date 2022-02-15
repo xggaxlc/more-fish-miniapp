@@ -8,3 +8,4 @@ export * from './show-toast';
 export * from './nav';
 export * from './wx-promise';
 export * from './color';
+export { Storage } from './storage';

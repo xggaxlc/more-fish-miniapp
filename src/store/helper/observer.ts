@@ -1,4 +1,4 @@
-import { userStore, checkCurrentBook } from './../user-store';
+import { userStore, checkCurrentBook, checkUpdateUserInfo } from './../user-store';
 import { autorun, isObservable, toJS } from 'mobx'
 import merge from 'lodash-es/merge';
 import forEach from 'lodash-es/forEach';
@@ -49,7 +49,7 @@ export function observer(options: IPage = {}, ...args) {
         }
 
         if (_needUpdateUserInfo) {
-          await userStore.tryUpdateUser();
+          await checkUpdateUserInfo();
         }
 
         if (this.props instanceof Promise) {

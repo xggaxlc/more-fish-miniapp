@@ -1,5 +1,5 @@
 import { userStore } from '@store';
-import { autoLoading } from '@utils';
+import { autoLoading, wxPromise } from '@utils';
 
 Component({
   externalClasses: ['button-class'],
@@ -20,15 +20,11 @@ Component({
       this.triggerEvent('submit');
     },
 
-    async handleGetUserInfo(e) {
-      try {
-        const { userInfo } = e.detail;
-        if (userInfo) {
-          await autoLoading(userStore.updateUser(userInfo));
-          this.handleTriggerSubmit();
-        }
-      } catch (e) {
-        throw e;
+    async handleGetUserInfo() {
+      const { userInfo } = await wxPromise.getUserProfile({ desc: '用于完善用户资料' });
+      if (userInfo) {
+        await autoLoading(userStore.updateUser(userInfo));
+        this.handleTriggerSubmit();
       }
     }
   }
