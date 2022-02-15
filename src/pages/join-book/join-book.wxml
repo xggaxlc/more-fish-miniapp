@@ -22,7 +22,7 @@
         <view class="box-users">
           <view class="title">成员：</view>
           <view class="box-avatar">
-            <view class="row" wx:for="{{ bookStore.chunkedUsers }}" wx:key="{{ index }}" wx:for-item="users">
+            <view class="row" wx:for="{{ bookStore.chunkedUsers }}" wx:key="index" wx:for-item="users">
               <avatar
                 class="item"
                 wx:for="{{ users }}"

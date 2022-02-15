@@ -4,7 +4,7 @@ import get from 'lodash-es/get';
 Component({
   properties: {
     bgColor: {
-      type: 'String',
+      type: String,
       value: 'transparent'
     },
 

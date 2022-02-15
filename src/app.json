@@ -17,7 +17,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#44A8FA",
     "navigationBarTitleText": "多鱼账本",
-    "navigationBarTextStyle": "light"
+    "navigationBarTextStyle": "white"
   },
   "networkTimeout": {
     "request": 20000,

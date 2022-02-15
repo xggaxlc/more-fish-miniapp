@@ -23,7 +23,7 @@
 
       <view class="item"
         wx:for="{{ budgetListStore.data }}"
-        wx:key="{{ index }}"
+        wx:key="index"
         data-id="{{ item.data._id }}"
         bindlongpress="handleLongPress"
       >

@@ -17,7 +17,7 @@
       </view>
 
       <view class="list">
-        <block wx:for="{{ budgetListStore.data }}" wx:key="{{ index }}">
+        <block wx:for="{{ budgetListStore.data }}" wx:key="index">
           <circle-text
             color="{{ item.data.color }}"
             active="{{ budgetIndex === index }}"

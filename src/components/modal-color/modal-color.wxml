@@ -9,7 +9,7 @@
   <view class="title">设置费用分类显示的颜色</view>
 
   <view class="box-color">
-    <block wx:for="{{ color }}" wx:key="{{ index }}">
+    <block wx:for="{{ color }}" wx:key="index">
       <view class="item" style="background: {{ item }}" data-color="{{ item }}" bindtap="handleSelect" />
     </block>
   </view>
