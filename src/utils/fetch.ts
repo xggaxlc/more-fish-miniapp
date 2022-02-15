@@ -59,7 +59,32 @@ function getRequestOpts(method = 'GET', headerName = 'header' ) {
   }
 }
 
-export function fetch(pathname: string, options: any = {}, handle401 = true) {
+async function fetch_production(pathname: string, options: any = {}, handle401 = true) {
+  pathname = pathname.replace(/\$\$bookId/g, userStore.currentBookId);
+  const { method = 'GET', data = {} } = options;
+  const methodStr = method.toUpperCase();
+  const request: any = getRequestOpts(methodStr, 'headers');
+  request.baseUrl = apiOrigin;
+  request.url = pathname;
+  if (methodStr === 'GET' || methodStr === 'DELETE') {
+    request.qs = data;
+  } else {
+    request.body = JSON.stringify(data);
+  }
+  const { result: { response: { statusCode, headers }, body } } = await wxPromise.cloud.callFunction({
+    name: 'request',
+    data: { request }
+  });
+
+  const res = {
+    header: headers,
+    statusCode,
+    data: body
+  }
+  return handleResponse(pathname, options, handle401)(res);
+}
+
+function fetch_development(pathname: string, options: any = {}, handle401 = true) {
   pathname = pathname.replace(/\$\$bookId/g, userStore.currentBookId);
   const mergeUrl = urlConcat(apiOrigin, pathname)
   const apiName = options.apiName || 'request'
@@ -67,4 +92,13 @@ export function fetch(pathname: string, options: any = {}, handle401 = true) {
   return wxPromise[apiName]({ url: mergeUrl, ...opts })
     .then(handleResponse(pathname, options, handle401));
 }
+
+const fn = {
+  development: fetch_development,
+  production: fetch_production
+}
+
+const { NODE_ENV = 'development' } = process.env;
+
+export const fetch = fn[NODE_ENV];
 
