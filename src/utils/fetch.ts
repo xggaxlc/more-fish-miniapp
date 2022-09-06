@@ -89,6 +89,9 @@ function fetch_development(pathname: string, options: any = {}, handle401 = true
   const mergeUrl = urlConcat(apiOrigin, pathname)
   const apiName = options.apiName || 'request'
   const opts = Object.assign({}, getRequestOpts(), options)
+
+  console.log(pathname, options, 'options')
+
   return wxPromise[apiName]({ url: mergeUrl, ...opts })
     .then(handleResponse(pathname, options, handle401));
 }
